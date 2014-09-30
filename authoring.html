@@ -1,0 +1,542 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial for Project Distributors &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="next" title="The Future of Python Packaging" href="future.html" />
+    <link rel="prev" title="Tutorial on Installing Packages" href="tutorial.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="future.html" title="The Future of Python Packaging"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial on Installing Packages"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tutorial-for-project-distributors">
+<h1><a class="toc-backref" href="#id22">Tutorial for Project Distributors</a><a class="headerlink" href="#tutorial-for-project-distributors" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Complete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-09-30</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#tutorial-for-project-distributors" id="id22">Tutorial for Project Distributors</a><ul>
+<li><a class="reference internal" href="#setup-for-project-distributors" id="id23">Setup for Project Distributors</a></li>
+<li><a class="reference internal" href="#creating-your-own-project" id="id24">Creating your own Project</a><ul>
+<li><a class="reference internal" href="#layout" id="id25">Layout</a></li>
+<li><a class="reference internal" href="#name" id="id26">Name</a></li>
+<li><a class="reference internal" href="#version" id="id27">Version</a></li>
+<li><a class="reference internal" href="#packages" id="id28">Packages</a></li>
+<li><a class="reference internal" href="#metadata" id="id29">Metadata</a></li>
+<li><a class="reference internal" href="#dependencies" id="id30">Dependencies</a></li>
+<li><a class="reference internal" href="#package-data" id="id31">Package Data</a></li>
+<li><a class="reference internal" href="#data-files" id="id32">Data Files</a></li>
+<li><a class="reference internal" href="#scripts" id="id33">Scripts</a></li>
+<li><a class="reference internal" href="#id17" id="id34">MANIFEST.in</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#developing-your-project" id="id35">Developing your project</a></li>
+<li><a class="reference internal" href="#packaging-your-project" id="id36">Packaging your Project</a><ul>
+<li><a class="reference internal" href="#source-distributions" id="id37">Source Distributions</a></li>
+<li><a class="reference internal" href="#universal-wheels" id="id38">Universal Wheels</a></li>
+<li><a class="reference internal" href="#platform-wheels" id="id39">Platform Wheels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uploading-your-project-to-pypi" id="id40">Uploading your Project to PyPI</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This tutorial covers the basics of how to create and distribute your
+own Python projects.  This tutorial assumes that you are already familiar
+with the contents of the <a class="reference internal" href="tutorial.html"><em>Tutorial on Installing Packages</em></a>.</p>
+<div class="section" id="setup-for-project-distributors">
+<h2><a class="toc-backref" href="#id23">Setup for Project Distributors</a><a class="headerlink" href="#setup-for-project-distributors" title="Permalink to this headline">¶</a></h2>
+<p>This section describes steps to follow before distributing your own
+Python packages.</p>
+<p>First, make sure you have already followed the <a class="reference internal" href="tutorial.html#installing-setup"><em>setup steps for
+installing packages</em></a>.</p>
+<p>In addition, you&#8217;ll need <a class="reference internal" href="projects.html#wheel"><em>wheel</em></a> (if you will be building wheels), and
+<a class="reference internal" href="projects.html#twine"><em>twine</em></a>, for uploading to <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>.</p>
+<p>We recommend the following installation sequence:</p>
+<ol class="arabic simple">
+<li>For building <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheels</em></a>: <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">wheel</span></tt> <a class="footnote-reference" href="#id20" id="id1">[1]</a></li>
+<li>For uploading <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a>: <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">twine</span></tt>
+<a class="footnote-reference" href="#id20" id="id2">[1]</a></li>
+</ol>
+</div>
+<div class="section" id="creating-your-own-project">
+<h2><a class="toc-backref" href="#id24">Creating your own Project</a><a class="headerlink" href="#creating-your-own-project" title="Permalink to this headline">¶</a></h2>
+<p>In the sections below, we&#8217;ll reference the <a class="reference external" href="https://github.com/pypa/sampleproject">PyPA sample project</a>. which exists as a companion to this
+tutorial.</p>
+<div class="section" id="layout">
+<h3><a class="toc-backref" href="#id25">Layout</a><a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h3>
+<p>The critical requirement for creating projects using <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> is to
+have a <tt class="docutils literal"><span class="pre">setup.py</span></tt>. For an example, see <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a>.  We&#8217;ll cover the
+components of <tt class="docutils literal"><span class="pre">setup.py</span></tt> in the sections below.</p>
+<p>Although it&#8217;s not required, most projects will organize the code using a <a class="reference external" href="https://github.com/pypa/sampleproject/tree/master/sample">single
+top-level package</a>,
+that&#8217;s named the same as the project.</p>
+<p>Additionally, most projects will contain the following files:</p>
+<ul class="simple">
+<li>A <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/README.rst">README</a> for
+explaining the project.</li>
+<li>A <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.cfg">setup.cfg</a>
+that contains option defaults for <tt class="docutils literal"><span class="pre">setup.py</span></tt> commands.</li>
+<li>A <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/MANIFEST.in">MANIFEST.in</a> that defines
+additional files to be included in the project distribution when it&#8217;s
+packaged.</li>
+</ul>
+</div>
+<div class="section" id="name">
+<h3><a class="toc-backref" href="#id26">Name</a><a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h3>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;sample&#39;</span>
+</pre></div>
+</div>
+<p>This will determine how your project is listed on <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>. For details on permitted characters, see the <a class="reference external" href="http://legacy.python.org/dev/peps/pep-0426/#name">name</a> section from <a class="reference internal" href="peps.html#pep426s"><em>PEP426</em></a>.</p>
+</div>
+<div class="section" id="version">
+<h3><a class="toc-backref" href="#id27">Version</a><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">version</span> <span class="o">=</span> <span class="s">&#39;1.2.0&#39;</span>
+</pre></div>
+</div>
+<p>Projects should aim to comply with the <a class="reference external" href="http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers">version scheme</a>
+specified in <a class="reference internal" href="peps.html#pep440s"><em>PEP440</em></a>.  Here are some examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>1.2.0.dev1  # Development release
+1.2.0a1     # Alpha Release
+1.2.0b1     # Beta Release
+1.2.0rc1    # RC Release
+1.2.0       # Final Release
+1.2.0.post1 # Post Release
+</pre></div>
+</div>
+<p>If the project code itself needs run-time access to the version, the simplest
+way is to keep the version in both <tt class="docutils literal"><span class="pre">setup.py</span></tt> and your code. If you&#8217;d rather
+not duplicate the value, there are a few ways to manage this. See the
+&#8220;<a class="reference internal" href="development.html#single-sourcing-the-version"><em>Single-sourcing the version across setup.py and your project</em></a>&#8221; Advanced Topics section.</p>
+</div>
+<div class="section" id="packages">
+<h3><a class="toc-backref" href="#id28">Packages</a><a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;contrib&#39;</span><span class="p">,</span> <span class="s">&#39;docs&#39;</span><span class="p">,</span> <span class="s">&#39;tests*&#39;</span><span class="p">]),</span>
+</pre></div>
+</div>
+<p>It&#8217;s required to list the <a class="reference internal" href="glossary.html#term-package-meaning-1"><em class="xref std std-term">packages</em></a> to be included
+in your project.  Although they can be listed manually,
+<tt class="docutils literal"><span class="pre">setuptools.find_packages</span></tt> finds them automatically.  Use the <tt class="docutils literal"><span class="pre">exclude</span></tt>
+keyword argument to omit packages that are not intended to be released and
+installed.</p>
+</div>
+<div class="section" id="metadata">
+<h3><a class="toc-backref" href="#id29">Metadata</a><a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s important to include various metadata about your project.</p>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># A description of your project</span>
+<span class="n">description</span><span class="o">=</span><span class="s">&#39;A sample Python project&#39;</span><span class="p">,</span>
+<span class="n">long_description</span><span class="o">=</span><span class="n">long_description</span><span class="p">,</span>
+
+<span class="c"># The project&#39;s main homepage</span>
+<span class="n">url</span><span class="o">=</span><span class="s">&#39;https://github.com/pypa/sampleproject&#39;</span><span class="p">,</span>
+
+<span class="c"># Author details</span>
+<span class="n">author</span><span class="o">=</span><span class="s">&#39;The Python Packaging Authority&#39;</span><span class="p">,</span>
+<span class="n">author_email</span><span class="o">=</span><span class="s">&#39;pypa-dev@googlegroups.com&#39;</span><span class="p">,</span>
+
+<span class="c"># Choose your license</span>
+<span class="n">license</span><span class="o">=</span><span class="s">&#39;MIT&#39;</span><span class="p">,</span>
+
+<span class="c"># See https://pypi.python.org/pypi?%3Aaction=list_classifiers</span>
+<span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+    <span class="c"># How mature is this project? Common values are</span>
+    <span class="c">#   3 - Alpha</span>
+    <span class="c">#   4 - Beta</span>
+    <span class="c">#   5 - Production/Stable</span>
+    <span class="s">&#39;Development Status :: 3 - Alpha&#39;</span><span class="p">,</span>
+
+    <span class="c"># Indicate who your project is intended for</span>
+    <span class="s">&#39;Intended Audience :: Developers&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Topic :: Software Development :: Build Tools&#39;</span><span class="p">,</span>
+
+    <span class="c"># Pick your license as you wish (should match &quot;license&quot; above)</span>
+    <span class="s">&#39;License :: OSI Approved :: MIT License&#39;</span><span class="p">,</span>
+
+    <span class="c"># Specify the Python versions you support here. In particular, ensure</span>
+    <span class="c"># that you indicate whether you support Python 2, Python 3 or both.</span>
+    <span class="s">&#39;Programming Language :: Python :: 2&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 2.6&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 2.7&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3.2&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3.3&#39;</span><span class="p">,</span>
+    <span class="s">&#39;Programming Language :: Python :: 3.4&#39;</span><span class="p">,</span>
+<span class="p">],</span>
+
+<span class="c"># What does your project relate to?</span>
+<span class="n">keywords</span><span class="o">=</span><span class="s">&#39;sample setuptools development&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies">
+<h3><a class="toc-backref" href="#id30">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">install_requires</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;peppercorn&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>&#8220;install_requires&#8221; should be used to specify what dependences a project
+minimally needs to run. When the project is installed by <a class="reference internal" href="projects.html#pip"><em>pip</em></a>, this is the
+specification that is used to install its dependencies.</p>
+<p>For more on using &#8220;install_requires&#8221; see <a class="reference internal" href="technical.html#install-requires-vs-requirements-files"><em>install_requires vs Requirements files</em></a>.</p>
+</div>
+<div class="section" id="package-data">
+<span id="id9"></span><h3><a class="toc-backref" href="#id31">Package Data</a><a class="headerlink" href="#package-data" title="Permalink to this headline">¶</a></h3>
+<p>Often, additional files need to be installed into a <a class="reference internal" href="glossary.html#term-package-meaning-1"><em class="xref std std-term">package</em></a>. These files are often data that’s closely related to the
+package’s implementation, or text files containing documentation that might be
+of interest to programmers using the package. These files are called &#8220;package
+data&#8221;.</p>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">package_data</span><span class="o">=</span><span class="p">{</span>
+    <span class="s">&#39;sample&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;package_data.dat&#39;</span><span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The value must be a mapping from package name to a list of relative path names
+that should be copied into the package. The paths are interpreted as relative to
+the directory containing the package.</p>
+<p>For more information, see <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html#including-data-files">Including Data Files</a> from
+the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html">setuptools docs</a>.</p>
+</div>
+<div class="section" id="data-files">
+<span id="id11"></span><h3><a class="toc-backref" href="#id32">Data Files</a><a class="headerlink" href="#data-files" title="Permalink to this headline">¶</a></h3>
+<p>Although configuring <a class="reference internal" href="#package-data"><em>Package Data</em></a> is sufficient for most needs, in some
+cases you may need to place data files <em>outside</em> of your <a class="reference internal" href="glossary.html#term-package-meaning-1"><em class="xref std std-term">packages</em></a>.  The <tt class="docutils literal"><span class="pre">data_files</span></tt> directive allows you to do that.</p>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">data_files</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;my_data&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;data/data_file&#39;</span><span class="p">])],</span>
+</pre></div>
+</div>
+<p>Each (directory, files) pair in the sequence specifies the installation
+directory and the files to install there. If directory is a relative path, it is
+interpreted relative to the installation prefix (Python’s sys.prefix for
+pure-Python distributions, sys.exec_prefix for distributions that contain
+extension modules). Each file name in files is interpreted relative to the
+<tt class="docutils literal"><span class="pre">setup.py</span></tt> script at the top of the project source distribution.</p>
+<p>For more information see the distutils section on <a class="reference external" href="http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files">Installing Additional Files</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> allows absolute &#8220;data_files&#8221; paths, and pip honors them as
+absolute, when installing from <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">sdist</em></a>.  This is not true, when installing from <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheel</em></a>
+distributions. Wheels don&#8217;t support absolute paths, and they end up being
+installed relative to &#8220;site-packages&#8221;.  For discussion see <a class="reference external" href="https://bitbucket.org/pypa/wheel/issue/92">wheel Issue #92</a>.</p>
+</div>
+</div>
+<div class="section" id="scripts">
+<h3><a class="toc-backref" href="#id33">Scripts</a><a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h3>
+<p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+    <span class="s">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">&#39;sample=sample:main&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>Although <tt class="docutils literal"><span class="pre">setup.py</span></tt> supports a <a class="reference external" href="http://docs.python.org/3.4/distutils/setupscript.html#installing-scripts">scripts</a>
+keyword for pointing to pre-made scripts, the recommended approach to achieve
+cross-platform compatibility, is to use &#8220;console_script&#8221; <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html#dynamic-discovery-of-services-and-plugins">entry points</a>
+that register your script interfaces, and let the toolchain handle the work of
+turning these interfaces into actual scripts <a class="footnote-reference" href="#id21" id="id15">[2]</a>.  The scripts will be
+generated during the install of your <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distribution</em></a>.</p>
+<p>For more information, see <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html#automatic-script-creation">Automatic Script Creation</a>
+from the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html">setuptools docs</a>.</p>
+</div>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id34">MANIFEST.in</a><a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>A <tt class="docutils literal"><span class="pre">MANIFEST.in</span></tt> file is needed in certain cases where you need to package
+additional files that <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">(or</span> <span class="pre">bdist_wheel)</span></tt> don&#8217;t
+automatically include.</p>
+<p>To see a list of what&#8217;s included by default, see the <a class="reference external" href="https://docs.python.org/3.4/distutils/sourcedist.html#specifying-the-files-to-distribute">Specifying the files to
+distribute</a>
+section from the <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a> documentation.</p>
+<p>For details on writing a <tt class="docutils literal"><span class="pre">MANIFEST.in</span></tt> file, see the <a class="reference external" href="https://docs.python.org/2/distutils/sourcedist.html#the-manifest-in-template">The MANIFEST.in template</a>
+section from the <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a> documentation.</p>
+</div>
+</div>
+<div class="section" id="developing-your-project">
+<h2><a class="toc-backref" href="#id35">Developing your project</a><a class="headerlink" href="#developing-your-project" title="Permalink to this headline">¶</a></h2>
+<p>Although not required, it&#8217;s common to locally install your project in &#8220;develop&#8221;
+or &#8220;editable&#8221; mode, while you&#8217;re working on it.  This allows the project to be
+both installed and editable in project form.</p>
+<div class="highlight-python"><div class="highlight"><pre>cd myproject
+python setup.py develop    # the setuptools way
+pip install -e .           # the pip way (which just calls &quot;setup.py develop&quot;)
+</pre></div>
+</div>
+<p>For more information, see the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html#development-mode">Development Mode</a> section
+of the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html">setuptools docs</a>.</p>
+</div>
+<div class="section" id="packaging-your-project">
+<h2><a class="toc-backref" href="#id36">Packaging your Project</a><a class="headerlink" href="#packaging-your-project" title="Permalink to this headline">¶</a></h2>
+<p>To have your project installable from a <a class="reference internal" href="glossary.html#term-package-index"><em class="xref std std-term">Package Index</em></a> like <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>, you&#8217;ll need to create a <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">Distribution</em></a>
+(aka &#8220;<a class="reference internal" href="glossary.html#term-package-meaning-2"><em class="xref std std-term">Package</em></a>&#8221; ) for your project.</p>
+<div class="section" id="source-distributions">
+<h3><a class="toc-backref" href="#id37">Source Distributions</a><a class="headerlink" href="#source-distributions" title="Permalink to this headline">¶</a></h3>
+<p>Minimally, you should create a <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">Source Distribution</em></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py sdist
+</pre></div>
+</div>
+<p>A &#8220;source distribution&#8221; is unbuilt (i.e, it&#8217;s not a <a class="reference internal" href="glossary.html#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a>),
+and requires a build step when installed by pip.  Even if the distribution is
+pure python (i.e. contains no extensions), it still involves a build step to
+build out the installation metadata from &#8220;<tt class="docutils literal"><span class="pre">setup.py</span></tt>&#8221;.</p>
+</div>
+<div class="section" id="universal-wheels">
+<span id="id19"></span><h3><a class="toc-backref" href="#id38">Universal Wheels</a><a class="headerlink" href="#universal-wheels" title="Permalink to this headline">¶</a></h3>
+<p>Additionally, if your project is pure python (i.e. contains no compiled
+extensions) and is version agnostic, then you should also create what&#8217;s called a
+&#8220;Universal Wheel&#8221;. This is a wheel that can be installed anywhere by <a class="reference internal" href="projects.html#pip"><em>pip</em></a>.</p>
+<p>To build a Universal Wheel:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py bdist_wheel --universal
+</pre></div>
+</div>
+<p>You can also permanently set the <tt class="docutils literal"><span class="pre">--universal</span></tt> flag in &#8220;setup.cfg&#8221; (e.g., see
+<a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.cfg">sampleproject/setup.cfg</a>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">bdist_wheel</span><span class="p">]</span>
+<span class="n">universal</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Only use the <tt class="docutils literal"><span class="pre">--universal</span></tt> setting, if:</p>
+<ol class="arabic simple">
+<li>Your project runs on Python 2 and 3 with no changes (i.e. it does not
+require 2to3).</li>
+<li>Your project does not have any C extensions.</li>
+</ol>
+<p>Beware that <tt class="docutils literal"><span class="pre">bdist_wheel</span></tt> does not currently have any checks to warn you if
+use the setting inappropriately.</p>
+<p>If your project has optional C extensions, it is recommended not to publish a
+universal wheel, because pip will prefer the wheel over a source installation,
+and prevent the possibility of building the extension.</p>
+</div>
+<div class="section" id="platform-wheels">
+<h3><a class="toc-backref" href="#id39">Platform Wheels</a><a class="headerlink" href="#platform-wheels" title="Permalink to this headline">¶</a></h3>
+<p>&#8220;Platform Wheels&#8221; are wheels that are specific to a certain platform like linux,
+OSX, or Windows, usually due to containing compiled extensions.</p>
+<p>&#8220;Platform Wheels&#8221; are built the same as &#8220;Universal Wheels&#8221;, but without the
+<tt class="docutils literal"><span class="pre">--universal</span></tt> flag:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py bdist_wheel
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> currently only allows uploads of
+platform wheels for Windows and OS X, NOT linux.  Currently, the wheel tag
+specification (<a class="reference internal" href="peps.html#pep425s"><em>PEP425</em></a>) does not handle the variation that can
+exist across linux distros.</p>
+</div>
+</div>
+</div>
+<div class="section" id="uploading-your-project-to-pypi">
+<h2><a class="toc-backref" href="#id40">Uploading your Project to PyPI</a><a class="headerlink" href="#uploading-your-project-to-pypi" title="Permalink to this headline">¶</a></h2>
+<p>First, you need a <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> user
+account. There are two options:</p>
+<ol class="arabic simple">
+<li>Create an account manually <a class="reference external" href="https://pypi.python.org/pypi?%3Aaction=register_form">using the form on the PyPI website</a>.</li>
+<li>Have an account created as part of registering your first project (see option
+#2 below).</li>
+</ol>
+<p>Next, you need to register your project.  There are two ways to do this:</p>
+<ol class="arabic simple">
+<li><strong>(Recommended):</strong> Use <a class="reference external" href="https://pypi.python.org/pypi?%3Aaction=submit_form">the form on the PyPI website</a>.  Although the form is
+cumbersome, it&#8217;s a secure option over using #2 below, which passes your
+credentials over plaintext.</li>
+<li>Run <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">register</span></tt>.  If you don&#8217;t have a user account already,
+a wizard will create one for you.</li>
+</ol>
+<p>If you created your account using option #1 (the form), you&#8217;ll need to manually
+write a <tt class="docutils literal"><span class="pre">~/.pypirc</span></tt> file like so.</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre>[distutils]
+index-servers=pypi
+
+[pypi]
+repository = https://pypi.python.org/pypi
+username = &lt;username&gt;
+password = &lt;password&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<p>You can leave out the password line if below you use twine with its
+<tt class="docutils literal"><span class="pre">-p</span> <span class="pre">PASSWORD</span></tt> argument.</p>
+<p>Finally, you can upload your distributions to <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>. There are two options.</p>
+<ol class="arabic">
+<li><p class="first"><strong>(Recommended):</strong> Use <a class="reference internal" href="projects.html#twine"><em>twine</em></a></p>
+<div class="highlight-python"><div class="highlight"><pre>twine upload dist/*
+</pre></div>
+</div>
+<p>The biggest reason to use twine is that <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">upload</span></tt> (option #2
+below) uploads files over plaintext. This means anytime you use it you expose
+your username and password to a MITM attack. Twine uses only verified TLS to
+upload to PyPI protecting your credentials from theft.</p>
+<p>Secondly it allows you to precreate your distribution files.  <tt class="docutils literal"><span class="pre">python</span>
+<span class="pre">setup.py</span> <span class="pre">upload</span></tt> only allows you to upload something that you&#8217;ve created in
+the same command invocation. This means that you cannot test the exact file
+you&#8217;re going to upload to PyPI to ensure that it works before uploading it.</p>
+<p>Finally it allows you to pre-sign your files and pass the .asc files into the
+command line invocation (<tt class="docutils literal"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">twine-1.0.1.tar.gz</span>
+<span class="pre">twine-1.0.1.tar.gz.asc</span></tt>). This enables you to be assured that you&#8217;re typing
+your gpg passphrase into gpg itself and not anything else since <em>you</em> will be
+the one directly executing <tt class="docutils literal"><span class="pre">gpg</span> <span class="pre">--detach-sign</span> <span class="pre">-a</span> <span class="pre">&lt;filename&gt;</span></tt>.</p>
+</li>
+<li><p class="first">Use <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py sdist bdist_wheel upload
+</pre></div>
+</div>
+</li>
+</ol>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Depending on your platform, this may require root or Administrator
+access. <a class="reference internal" href="projects.html#pip"><em>pip</em></a> is currently considering changing this by <a class="reference external" href="https://github.com/pypa/pip/issues/1668">making user
+installs the default behavior</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id15">[2]</a></td><td>Specifically, the &#8220;console_script&#8221; approach generates <tt class="docutils literal"><span class="pre">.exe</span></tt> files on
+Windows, which are necessary because the OS special-cases <tt class="docutils literal"><span class="pre">.exe</span></tt> files.
+Script-execution features like <tt class="docutils literal"><span class="pre">PATHEXT</span></tt> and the <a class="reference external" href="http://legacy.python.org/dev/peps/pep-0397/">Python Launcher for
+Windows</a> allow scripts to
+be used in many cases, but not all.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial for Project Distributors</a><ul>
+<li><a class="reference internal" href="#setup-for-project-distributors">Setup for Project Distributors</a></li>
+<li><a class="reference internal" href="#creating-your-own-project">Creating your own Project</a><ul>
+<li><a class="reference internal" href="#layout">Layout</a></li>
+<li><a class="reference internal" href="#name">Name</a></li>
+<li><a class="reference internal" href="#version">Version</a></li>
+<li><a class="reference internal" href="#packages">Packages</a></li>
+<li><a class="reference internal" href="#metadata">Metadata</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#package-data">Package Data</a></li>
+<li><a class="reference internal" href="#data-files">Data Files</a></li>
+<li><a class="reference internal" href="#scripts">Scripts</a></li>
+<li><a class="reference internal" href="#id17">MANIFEST.in</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#developing-your-project">Developing your project</a></li>
+<li><a class="reference internal" href="#packaging-your-project">Packaging your Project</a><ul>
+<li><a class="reference internal" href="#source-distributions">Source Distributions</a></li>
+<li><a class="reference internal" href="#universal-wheels">Universal Wheels</a></li>
+<li><a class="reference internal" href="#platform-wheels">Platform Wheels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uploading-your-project-to-pypi">Uploading your Project to PyPI</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="previous chapter">Tutorial on Installing Packages</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="future.html"
+                        title="next chapter">The Future of Python Packaging</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="future.html" title="The Future of Python Packaging"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial on Installing Packages"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

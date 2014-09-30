@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Future of Python Packaging &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="next" title="Advanced Topics" href="additional.html" />
+    <link rel="prev" title="Installation &amp; Packaging Tutorial" href="tutorial.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="additional.html" title="Advanced Topics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Installation &amp; Packaging Tutorial"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-future-of-python-packaging">
+<h1>The Future of Python Packaging<a class="headerlink" href="#the-future-of-python-packaging" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Incomplete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-04-09</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a> cross-platform build and distribution system was added to
+the Python standard library in late 2000. This means the current Python software
+distribution ecosystem (which builds on <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a>) has a foundation that
+is almost 15 years old, which poses a variety of challenges to successful
+evolution.</p>
+<p>The current effort to improve the situation started when the <tt class="docutils literal"><span class="pre">packaging</span></tt>
+library (also known as <tt class="docutils literal"><span class="pre">distutils2</span></tt>) <a class="reference external" href="https://mail.python.org/pipermail/python-dev/2012-June/120430.html">failed to be accepted</a> into the
+standard library for Python 3.3.  That effort had spanned from 2009 to 2012.</p>
+<p>The current effort is managed by the <a class="reference internal" href="glossary.html#term-python-packaging-authority-pypa"><em class="xref std std-term">Python Packaging Authority (PyPA)</em></a>,
+in cooperation with members of the Python core development team.</p>
+<div class="section" id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>To provide a relatively easy to use software distribution infrastructure that
+is also fast, reliable and reasonably secure.  &#8220;Reasonably secure&#8221;, due to
+backwards compatibility constraints preventing turning off some insecure
+legacy features.</li>
+<li>Although it&#8217;s still being defined, to work towards a &#8220;Meta-Packaging&#8221; <a class="footnote-reference" href="#id5" id="id1">[1]</a> system that:<ul>
+<li>Clearly delineates the phases of distribution</li>
+<li>Allows for multiple interacting tools vs one monolithic tool</li>
+<li>Specifically allows for alternative build systems, i.e. a <a class="reference external" href="http://www.python.org/dev/peps/pep-0426/#metabuild-system">&#8220;MetaBuild&#8221;</a> system.</li>
+</ul>
+</li>
+<li>To improve the docs for users, including the <a class="reference external" href="http://packaging.python.org">Python Packaging User Guide</a>,
+anything related to packaging on <a class="reference external" href="http://docs.python.org">docs.python.org</a>, and the project docs for
+<a class="reference internal" href="projects.html#pip"><em>pip</em></a>, <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>, <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>, and <a class="reference internal" href="projects.html#wheel"><em>wheel</em></a>.</li>
+<li>To be progressive, but also be very mindful to not break things that are
+currently working, due to haste.</li>
+<li>To specifically <em>not</em> focus at first on adding something to the standard
+library as our solution to our packaging problems.  Adding something to the
+standard library is hard, and once it&#8217;s added, it&#8217;s a slow process to change
+it.  Most of the current effort is largely focused on 3rd party projects.</li>
+</ul>
+</div>
+<div class="section" id="how-to-help">
+<h2>How to help<a class="headerlink" href="#how-to-help" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Get involved with one of mainstream <a class="reference internal" href="projects.html"><em>packaging projects</em></a>.</li>
+<li>Help us catalog and discuss the current problems in packaging and
+installation.  See the <a class="reference external" href="https://github.com/pypa/packaging-problems/issues">The issue tracker for the problems in packaging</a> maintained by
+<a class="reference internal" href="glossary.html#term-python-packaging-authority-pypa"><em class="xref std std-term">PyPA</em></a>.</li>
+<li>Discuss <a class="reference internal" href="peps.html"><em>PEPs</em></a> and long terms plans at <a class="reference external" href="http://mail.python.org/mailman/listinfo/distutils-sig">distutils-sig</a>.</li>
+</ul>
+</div>
+<div class="section" id="presentations-articles">
+<h2>Presentations &amp; Articles<a class="headerlink" href="#presentations-articles" title="Permalink to this headline">¶</a></h2>
+<p>In addition to this document, there have been some talks and presentations
+regarding current and future efforts related to packaging.</p>
+<ul class="simple">
+<li>PyCon US, March 2013<ul>
+<li><a class="reference external" href="http://pyvideo.org/video/1731/panel-directions-for-packaging">Directions in Packaging Q &amp; A Panel (aka &#8221;./setup.py install must die&#8221;)</a></li>
+</ul>
+</li>
+<li>PyCon AU, July 2013<ul>
+<li><a class="reference external" href="http://pyvideo.org/video/2197/nobody-expects-the-python-packaging-authority">Nobody Expects the Python Packaging Authority</a></li>
+</ul>
+</li>
+<li>linux.conf.au 2014<ul>
+<li>Python Packaging 2.0: Playing Well With Others (<a class="reference external" href="https://www.youtube.com/watch?v=7An2GobbSWU">video</a>, <a class="reference external" href="http://lwn.net/Articles/580399">article</a>)</li>
+</ul>
+</li>
+<li>PyCon US, April 2014<ul>
+<li><a class="reference external" href="https://us.pycon.org/2014/schedule/presentation/204/">What is coming in Python packaging</a></li>
+<li><a class="reference external" href="https://us.pycon.org/2014/schedule/presentation/219">Python packaging simplified, for end users, app developers, and open source
+contributors</a></li>
+</ul>
+</li>
+<li>Personal essays<ul>
+<li><a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/pep_ideas/core_packaging_api.html">Nick Coghlan</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="major-todos">
+<h2>Major Todos<a class="headerlink" href="#major-todos" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="metadata-2-0">
+<h3>Metadata 2.0<a class="headerlink" href="#metadata-2-0" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://bitbucket.org/pypa/pypi-metadata-formats/issues?status=new&amp;status=open&amp;priority=blocker">See the Metadata Open Issues</a></p>
+<ul class="simple">
+<li><a class="reference internal" href="peps.html#pep426s"><em>PEP426: Metadata for Python Software Packages 2.0</em></a></li>
+<li><a class="reference internal" href="peps.html#pep440s"><em>PEP440: Version Identification and Dependency Specification</em></a></li>
+<li><a class="reference external" href="http://legacy.python.org/dev/peps/pep-0459/">PEP459: Standard Metadata Extensions for Python Software Packages</a></li>
+<li><a class="reference external" href="https://bitbucket.org/pypa/pypi-metadata-formats/issue/18/wheel-11">Wheel 1.1</a></li>
+<li><a class="reference external" href="https://bitbucket.org/pypa/pypi-metadata-formats/issue/20/sdist-20">sdist 2.0</a></li>
+<li><a class="reference external" href="https://bitbucket.org/pypa/pypi-metadata-formats/issue/23/common-filename-scheme">PEP for common naming schemes</a></li>
+<li><a class="reference external" href="https://bitbucket.org/pypa/pypi-metadata-formats/issue/22/installation-database-2">Installation Database 2.0 (replace PEP376)</a></li>
+</ul>
+</div>
+<div class="section" id="pypi-infrastructure">
+<h3>PyPI Infrastructure<a class="headerlink" href="#pypi-infrastructure" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Migration from the legacy PyPI server to <a class="reference internal" href="projects.html#warehouse"><em>Warehouse</em></a> (the preview is
+available at <a class="reference external" href="https://warehouse.python.org/">https://warehouse.python.org/</a> running off the live PyPI data)</li>
+<li><a class="reference internal" href="peps.html#pep458s"><em>PEP458</em></a>: An integration of PyPI with the &#8220;The Update Framework (TUF)&#8221;</li>
+<li>Improved PyPI upload API</li>
+</ul>
+</div>
+<div class="section" id="pip">
+<h3>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>An internal stable api for pip</li>
+<li>Removal of older pip commands and options that aren&#8217;t popular or well
+maintained (<a class="reference external" href="https://github.com/pypa/pip/issues/906">#906</a>, <a class="reference external" href="https://github.com/pypa/pip/issues/1046">#1046</a>)</li>
+<li><a class="reference internal" href="projects.html#pip"><em>pip</em></a> needs a <a class="reference external" href="https://github.com/pypa/pip/issues/988">real dependency resolver</a></li>
+</ul>
+</div>
+<div class="section" id="docs-and-community">
+<h3>Docs and Community<a class="headerlink" href="#docs-and-community" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Refactor the <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>, <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>, and <a class="reference internal" href="projects.html#wheel"><em>wheel</em></a> docs to
+be consistent with the <a class="reference external" href="https://gist.github.com/qwcode/8431828">&#8220;PyPA Standard Docs Template&#8221;</a></li>
+<li>Document pip&#8217;s (and more generally pypa&#8217;s) deprecation policy (<a class="reference external" href="https://github.com/pypa/pip/issues/1611">Issue 1611</a>)</li>
+<li>A general release email list for all Pypa projects?</li>
+</ul>
+</div>
+<div class="section" id="more-peps">
+<h3>More PEPs<a class="headerlink" href="#more-peps" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>A <a class="reference external" href="http://www.python.org/dev/peps/pep-0426/#metabuild-system">&#8220;MetaBuild&#8221;</a>
+PEP that would allow projects to specify alternative build systems
+(i.e. something other than setuptools).</li>
+<li><a class="reference external" href="https://bitbucket.org/pypa/pypi-metadata-formats/issue/19/wheel-20">Wheel 2.0</a></li>
+</ul>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>See Nick Coghlan&#8217;s <a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/pep_ideas/core_packaging_api.html#the-phases-of-distribution">The Phases of Distribution</a>
+and <a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/pep_ideas/core_packaging_api.html#a-meta-packaging-system">A Meta-Packaging System</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The Future of Python Packaging</a><ul>
+<li><a class="reference internal" href="#goals">Goals</a></li>
+<li><a class="reference internal" href="#how-to-help">How to help</a></li>
+<li><a class="reference internal" href="#presentations-articles">Presentations &amp; Articles</a></li>
+<li><a class="reference internal" href="#major-todos">Major Todos</a><ul>
+<li><a class="reference internal" href="#metadata-2-0">Metadata 2.0</a></li>
+<li><a class="reference internal" href="#pypi-infrastructure">PyPI Infrastructure</a></li>
+<li><a class="reference internal" href="#pip">pip</a></li>
+<li><a class="reference internal" href="#docs-and-community">Docs and Community</a></li>
+<li><a class="reference internal" href="#more-peps">More PEPs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="previous chapter">Installation &amp; Packaging Tutorial</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="additional.html"
+                        title="next chapter">Advanced Topics</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="additional.html" title="Advanced Topics"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Installation &amp; Packaging Tutorial"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Advanced Topics &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="next" title="Concepts &amp; Analyses" href="technical.html" />
+    <link rel="prev" title="The Future of Python Packaging" href="future.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="technical.html" title="Concepts &amp; Analyses"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="future.html" title="The Future of Python Packaging"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="advanced-topics">
+<h1>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Incomplete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-04-09</td>
+</tr>
+</tbody>
+</table>
+<p>This section covers a variety of packaging concepts and topics that don&#8217;t fit
+neatly into the documentation of any particular tool, and don&#8217;t really belong in
+the <a class="reference internal" href="tutorial.html"><em>Tutorial</em></a> either. While the entries are organised into
+different categories, those categorisations are quite broad and flexible.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Concepts &amp; Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#packaging-formats">Packaging Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#installation-schemes">Installation Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#install-requires-vs-requirements-files">install_requires vs Requirements files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#pip-vs-easy-install">pip vs easy_install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#easy-install-and-sys-path">easy_install and sys.path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#wheel-vs-egg">Wheel vs Egg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#multi-version-installs">Multi-version Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#dependency-resolution">Dependency Resolution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Project Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#supporting-multiple-python-versions">Supporting multiple Python versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#single-sourcing-the-version-across-setup-py-and-your-project">Single-sourcing the version across <tt class="docutils literal"><span class="pre">setup.py</span></tt> and your project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#pypi-mirrors-and-caches">PyPI mirrors and caches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#patching-forking">Patching &amp; Forking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Application Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#os-packaging-installers">OS Packaging &amp; Installers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#application-bundles">Application Bundles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Binary Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#an-overview-of-binary-extensions">An overview of binary extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#implementing-binary-extensions">Implementing binary extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#building-binary-extensions">Building binary extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#publishing-binary-extensions">Publishing binary extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="science.html">Installing Scientific Distributions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="science.html#building-from-source">Building from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="science.html#linux-distribution-packages">Linux distribution packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="science.html#windows-installers">Windows installers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="science.html#mac-os-x-installers-and-package-managers">Mac OS X installers and package managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="science.html#scipy-distributions">SciPy distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="science.html#the-conda-cross-platform-package-manager">The conda cross-platform package manager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appveyor.html">Building Binary Wheels for Windows using Appveyor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appveyor.html#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appveyor.html#setting-up">Setting Up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appveyor.html#adding-appveyor-support-to-your-project">Adding Appveyor support to your project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appveyor.html#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="os.html">OS Specifics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="os.html#debian-ubuntu">Debian/Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#centos-redhat">CentOS/RedHat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#osx">OSX</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="future.html"
+                        title="previous chapter">The Future of Python Packaging</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="technical.html"
+                        title="next chapter">Concepts &amp; Analyses</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="technical.html" title="Concepts &amp; Analyses"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="future.html" title="The Future of Python Packaging"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

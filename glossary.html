@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Glossary &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="prev" title="Packaging History" href="history.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="history.html" title="Packaging History"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Complete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-05-10</td>
+</tr>
+</tbody>
+</table>
+<dl class="glossary docutils">
+<dt id="term-binary-distribution">Binary Distribution</dt>
+<dd>A specific kind of <a class="reference internal" href="#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a> that contains compiled
+extensions.</dd>
+<dt id="term-built-distribution">Built Distribution</dt>
+<dd>A <a class="reference internal" href="#term-distribution"><em class="xref std std-term">Distribution</em></a> format containing files and metadata that only
+need to be moved to the correct location on the target system, to be
+installed. <a class="reference internal" href="#term-wheel"><em class="xref std std-term">Wheel</em></a> is such a format, whereas distutil&#8217;s
+<a class="reference internal" href="#term-source-distribution-or-sdist"><em class="xref std std-term">Source Distribution</em></a> is not,
+in that it requires a build step before it can be installed.  This
+format does not imply that python files have to be precompiled
+(<a class="reference internal" href="#term-wheel"><em class="xref std std-term">Wheel</em></a> intentionally does not include compiled python files).</dd>
+<dt id="term-distribution">Distribution</dt>
+<dd>A Python distribution is a versioned archive file that contains Python
+<a class="reference internal" href="#term-package-meaning-1"><em class="xref std std-term">packages</em></a>, <a class="reference internal" href="#term-module"><em class="xref std std-term">modules</em></a>, and
+other resource files that are used to distribute a <a class="reference internal" href="#term-release"><em class="xref std std-term">Release</em></a>. The
+distribution file is what an end-user will download from the internet
+and install.</dd>
+<dt id="term-egg">Egg</dt>
+<dd>A <a class="reference internal" href="#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a> format introduced by <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>,
+which is being replaced by <a class="reference internal" href="#term-wheel"><em class="xref std std-term">Wheel</em></a>.  For details, see <a class="reference external" href="http://pythonhosted.org/setuptools/formats.html">The
+Internal Structure of Python Eggs</a> and <a class="reference external" href="http://peak.telecommunity.com/DevCenter/PythonEggs">Python Eggs</a></dd>
+<dt id="term-extension-module">Extension Module</dt>
+<dd>A <a class="reference internal" href="#term-module"><em class="xref std std-term">module</em></a> written in the low-level language of the Python implementation:
+C/C++ for Python, Java for Jython. Typically contained in a single
+dynamically loadable pre-compiled file, e.g.  a shared object (.so) file
+for Python extensions on Unix, a DLL (given the .pyd extension) for
+Python extensions on Windows, or a Java class file for Jython
+extensions.</dd>
+<dt id="term-known-good-set-kgs">Known Good Set (KGS)</dt>
+<dd>A set of distributions at specified versions which are compatible with
+each other. Typically a test suite will be run which passes all tests
+before a specific set of packages is declared a known good set. This
+term is commonly used by frameworks and toolkits which are comprised of
+multiple individual distributions.</dd>
+<dt id="term-module">Module</dt>
+<dd>The basic unit of code reusability in Python, existing in one of two
+types: <a class="reference internal" href="#term-pure-module"><em class="xref std std-term">Pure Module</em></a>, or <a class="reference internal" href="#term-extension-module"><em class="xref std std-term">Extension Module</em></a>.</dd>
+<dt id="term-package-meaning-1">Package (Meaning #1)</dt>
+<dd>A directory containing an <tt class="docutils literal"><span class="pre">__init__.py</span></tt> file (ex.
+<tt class="docutils literal"><span class="pre">mypackage/__init__.py</span></tt>), and also usually containing modules
+(possibly along with other packages). You can import a package: <tt class="docutils literal"><span class="pre">import</span>
+<span class="pre">mypackage</span></tt></dd>
+<dt id="term-package-meaning-2">Package (Meaning #2)</dt>
+<dd>A synonym for <a class="reference internal" href="#term-distribution"><em class="xref std std-term">Distribution</em></a>. It is common in Python to refer to a
+distribution using the term &#8220;package&#8221;. While the two meanings of the
+term &#8220;package&#8221; is not always 100% unambigous, the context of the term
+&#8220;package&#8221; is usually sufficient to distinguish the meaning of the
+word. For example, the python installation tool <a class="reference internal" href="projects.html#pip"><em>pip</em></a> is an acronym
+for &#8220;pip installs packages&#8221;. while technically the tool installs
+distributions. Even the site where distributions are distributed at is
+called the &#8220;<a class="reference internal" href="#term-python-package-index-pypi"><em class="xref std std-term">Python Package Index</em></a>&#8221;
+(and not the &#8220;Python Distribution Index&#8221;).</dd>
+<dt id="term-package-index">Package Index</dt>
+<dd>A repository of distributions with a web interface to automate
+<a class="reference internal" href="#term-distribution"><em class="xref std std-term">Distribution</em></a> discovery and consumption.</dd>
+<dt id="term-project">Project</dt>
+<dd><p class="first">A library, framework, script, plugin, application, or collection of data
+or other resources, or some combination thereof that is intended to be
+packaged into a <a class="reference internal" href="#term-distribution"><em class="xref std std-term">Distribution</em></a>.</p>
+<p>Since most projects create <a class="reference internal" href="#term-distribution"><em class="xref std std-term">Distributions</em></a> using
+<a class="reference internal" href="projects.html#distutils"><em>distutils</em></a> or <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>, another practical way to define
+projects currently is something that contains a <a class="reference internal" href="#term-setup-py"><em class="xref std std-term">setup.py</em></a> at the
+root of the project src directory, where &#8220;setup.py&#8221; is the project
+specification filename used by <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a> and <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>.</p>
+<p>Python projects must have unique names, which are registered on
+<a class="reference internal" href="#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>. Each project will then
+contain one or more <a class="reference internal" href="#term-release"><em class="xref std std-term">Releases</em></a>, and each release may
+comprise one or more <a class="reference internal" href="#term-distribution"><em class="xref std std-term">distributions</em></a>.</p>
+<p class="last">Note that there is a strong convention to name a project after the name
+of the package that is imported to run that project. However, this
+doesn&#8217;t have to hold true. It&#8217;s possible to install a distribution from
+the project &#8216;spam&#8217; and have it provide a package importable only as
+&#8216;eggs&#8217;.</p>
+</dd>
+<dt id="term-pure-module">Pure Module</dt>
+<dd>A <a class="reference internal" href="#term-module"><em class="xref std std-term">module</em></a> written in Python and contained in a single .py file (and
+possibly associated .pyc and/or .pyo files).</dd>
+<dt id="term-python-packaging-authority-pypa">Python Packaging Authority (PyPA)</dt>
+<dd>PyPA is a working group that maintains many of the relevant projects in
+Python packaging. They host projects on <a class="reference external" href="https://github.com/pypa">github</a> and <a class="reference external" href="https://bitbucket.org/pypa">bitbucket</a>, and discuss issues on the <a class="reference external" href="https://groups.google.com/forum/#!forum/pypa-dev">pypa-dev
+mailing list</a>.</dd>
+<dt id="term-python-package-index-pypi">Python Package Index (PyPI)</dt>
+<dd><a class="reference external" href="https://pypi.python.org/pypi">PyPI</a> is the default <a class="reference internal" href="#term-package-index"><em class="xref std std-term">Package
+Index</em></a> for the Python community. It is open to all Python developers to
+consume and distribute their distributions.</dd>
+<dt id="term-release">Release</dt>
+<dd><p class="first">A snapshot of a <a class="reference internal" href="#term-project"><em class="xref std std-term">Project</em></a> at a particular point in time, denoted
+by a version identifier.</p>
+<p class="last">Making a release may entail the publishing of multiple
+<a class="reference internal" href="#term-distribution"><em class="xref std std-term">Distributions</em></a>.  For example, if version 1.0 of a
+project was released, it could be available in both a source
+distribution format and a Windows installer distribution format.</p>
+</dd>
+<dt id="term-requirement">Requirement</dt>
+<dd>A specification for a <a class="reference internal" href="#term-package-meaning-2"><em class="xref std std-term">package</em></a> to be
+installed.  <a class="reference internal" href="projects.html#pip"><em>pip</em></a>, the <a class="reference internal" href="#term-python-packaging-authority-pypa"><em class="xref std std-term">PYPA</em></a> recommended installer, allows various forms of specification
+that can all be considered a &#8220;requirement&#8221;. For more information, see the
+<a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_install.html#pip-install" title="(in pip v1.5)"><em>pip install</em></a> reference.</dd>
+<dt id="term-requirements-file">Requirements File</dt>
+<dd>A file containing a list of <a class="reference internal" href="#term-requirement"><em class="xref std std-term">Requirements</em></a> that can
+be installed using <a class="reference internal" href="projects.html#pip"><em>pip</em></a>. For more information, see the <a class="reference internal" href="projects.html#pip"><em>pip</em></a>
+docs on <a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#requirements-files" title="(in pip v1.5)"><em>Requirements Files</em></a>.</dd>
+<dt id="term-setup-py">setup.py</dt>
+<dd>The project specification file for <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a> and <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>.</dd>
+<dt id="term-source-archive">Source Archive</dt>
+<dd>An archive containing the raw source code for a <a class="reference internal" href="#term-release"><em class="xref std std-term">Release</em></a>, prior
+to creation of an <a class="reference internal" href="#term-source-distribution-or-sdist"><em class="xref std std-term">Source Distribution</em></a> or <a class="reference internal" href="#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a>.</dd>
+<dt id="term-source-distribution-or-sdist">Source Distribution (or &#8220;sdist&#8221;)</dt>
+<dd>A <a class="reference internal" href="#term-distribution"><em class="xref std std-term">distribution</em></a> format (usually generated using
+<tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span></tt>) that provides metadata and the essential
+source files needed for installing by a tool like <a class="reference internal" href="projects.html#pip"><em>pip</em></a>, or for
+generating a <a class="reference internal" href="#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a>.</dd>
+<dt id="term-system-package">System Package</dt>
+<dd>A package provided in a format native to the operating system,
+e.g. an rpm or dpkg file.</dd>
+<dt id="term-virtual-environment">Virtual Environment</dt>
+<dd>An isolated Python environment that allows packages to be installed for
+use by a particular application, rather than being installed system
+wide. For more information, see the tutorial section on <a class="reference internal" href="tutorial.html#creating-and-using-virtual-environments"><em>Virtual Environments</em></a>.</dd>
+<dt id="term-wheel">Wheel</dt>
+<dd>A <a class="reference internal" href="#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a> format introduced by <a class="reference internal" href="peps.html#pep427s"><em>PEP427 The Wheel Binary Package Format 1.0</em></a>, which
+is intended to replace the <a class="reference internal" href="#term-egg"><em class="xref std std-term">Egg</em></a> format.  Wheel is currently
+supported by <a class="reference internal" href="projects.html#pip"><em>pip</em></a>.</dd>
+<dt id="term-working-set">Working Set</dt>
+<dd>A collection of <a class="reference internal" href="#term-distribution"><em class="xref std std-term">distributions</em></a> available for
+importing. These are the distributions that are on the <cite>sys.path</cite>
+variable. At most, one <a class="reference internal" href="#term-distribution"><em class="xref std std-term">Distribution</em></a> for a project is possible in
+a working set.</dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="history.html"
+                        title="previous chapter">Packaging History</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="history.html" title="Packaging History"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

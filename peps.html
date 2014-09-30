@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PEP Summaries &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="next" title="Packaging History" href="history.html" />
+    <link rel="prev" title="Project Summaries" href="projects.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="history.html" title="Packaging History"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="projects.html" title="Project Summaries"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pep-summaries">
+<span id="id1"></span><h1>PEP Summaries<a class="headerlink" href="#pep-summaries" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Complete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-08-25</td>
+</tr>
+</tbody>
+</table>
+<p>Summaries for the currently relevant <a class="reference external" href="http://www.python.org/dev/peps/">PEPs</a>
+in the space of Python installation and packaging.</p>
+<div class="section" id="pep376-database-of-installed-python-distributions">
+<span id="pep376s"></span><h2>PEP376 Database of Installed Python Distributions<a class="headerlink" href="#pep376-database-of-installed-python-distributions" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><p class="first"><a class="reference external" href="http://www.python.org/dev/peps/pep-0376/">PEP376</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body"><p class="first">Accepted</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body"><p class="first">Describes a new <tt class="docutils literal"><span class="pre">.dist-info</span></tt> directory structure and system of
+metadata to be used when installing distributions.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body"><p class="first">This has very little implication for users, except to be aware of
+the format if they go hunting through their <cite>site-packages</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="#pep426s"><em>PEP426</em></a> will likely spawn a child PEP that
+updates this to use a json-based system of metadata.</p>
+</div>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body"><p class="first last">Currently, the <tt class="docutils literal"><span class="pre">bdist_wheel</span></tt> extension from the
+<a class="reference internal" href="projects.html#wheel"><em>wheel</em></a> project creates distributions using this structure,
+and <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> and <a class="reference internal" href="projects.html#pip"><em>pip</em></a> are equipped to manage
+distributions installed in this way. There is also an
+implementation in <a class="reference internal" href="projects.html#distlib"><em>distlib</em></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep425-compatibility-tags-for-built-distributions">
+<span id="pep425s"></span><h2>PEP425 Compatibility Tags for Built Distributions<a class="headerlink" href="#pep425-compatibility-tags-for-built-distributions" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><p class="first"><a class="reference external" href="http://www.python.org/dev/peps/pep-0425/">PEP425</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body"><p class="first">Accepted</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body"><p class="first">Specifies a tagging system to use in <a class="reference internal" href="glossary.html#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a> file
+names. The motivation for the system was to tag wheel distributions,
+which are covered in <a class="reference external" href="http://www.python.org/dev/peps/pep-0427/">PEP427</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A revision to this PEP is likely due to simple tags like
+&#8220;linux_x86_64&#8221; not handling the variation within linux
+platforms. Because of this, PyPI currently blocks uploading linux
+platform-specific wheels and pip won&#8217;t install linux
+platform-specific wheels from PyPI.</p>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body"><p class="first">As <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheels</em></a> become more common, users will notice
+the new tagging scheme in wheel filenames.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body"><p class="first last">The <tt class="docutils literal"><span class="pre">bdist_wheel</span></tt> <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> extensions generates
+<a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheels</em></a> using this scheme, and pip&#8217;s wheel
+installer understands the scheme as of v1.4. The wheel builder
+in <a class="reference internal" href="projects.html#distlib"><em>distlib</em></a> also implements this scheme.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep427-the-wheel-binary-package-format-1-0">
+<span id="pep427s"></span><h2>PEP427 The Wheel Binary Package Format 1.0<a class="headerlink" href="#pep427-the-wheel-binary-package-format-1-0" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><p class="first"><a class="reference external" href="http://www.python.org/dev/peps/pep-0427/">PEP427</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body"><p class="first">Accepted</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body"><p class="first">Specifies a <a class="reference internal" href="glossary.html#term-built-distribution"><em class="xref std std-term">Built Distribution</em></a> format, that is based on, but
+modernizes the <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Egg</em></a> format. Wheel filenames conform to
+<a class="reference internal" href="#pep425s"><em>PEP425</em></a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="#pep426s"><em>PEP426</em></a> will likely spawn a child PEP that
+updates this to use a json-based system of metadata.</p>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body"><p class="first">Built distributions are <em>fast</em> to install.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body"><p class="first last">The <tt class="docutils literal"><span class="pre">bdist_wheel</span></tt> <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> extension (available from
+<a class="reference internal" href="projects.html#wheel"><em>wheel</em></a>) generates <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheels</em></a>, and <a class="reference internal" href="projects.html#pip"><em>pip</em></a>
+supports installing wheels as of v1.4. There is also an
+implementation in <a class="reference internal" href="projects.html#distlib"><em>distlib</em></a>, which allows both building
+wheels and installing from wheels.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep438-transitioning-to-release-file-hosting-on-pypi">
+<span id="pep438s"></span><h2>PEP438 Transitioning to release-file hosting on PyPI<a class="headerlink" href="#pep438-transitioning-to-release-file-hosting-on-pypi" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><a class="reference external" href="http://www.python.org/dev/peps/pep-0438/">PEP438</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body">Accepted</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body">Specifies a two-step plan to phase out the primary use of external download
+links on PyPI, for the sake of security and installation speed.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body"><a class="reference internal" href="projects.html#pip"><em>pip</em></a> (as of v1.5) will be faster and more secure by default.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body">Both <a class="reference internal" href="projects.html#pip"><em>pip</em></a> and PyPI made changes during 2013 to implement
+this PEP.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep453-explicit-bootstrapping-of-pip-in-python-installations">
+<span id="pep453s"></span><h2>PEP453 Explicit bootstrapping of pip in Python installations<a class="headerlink" href="#pep453-explicit-bootstrapping-of-pip-in-python-installations" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><a class="reference external" href="http://www.python.org/dev/peps/pep-0453/">PEP453</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body">Accepted</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body">Proposes the inclusion of a method for explicitly bootstrapping pip as
+the default package manager for Python.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body"><tt class="docutils literal"><span class="pre">pip</span></tt> will be available in some Python installations without
+users having to install it.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body">The goal is to have this for Python 3.4.  PEP453 includes an
+<a class="reference external" href="http://www.python.org/dev/peps/pep-0453/#integration-timeline">integration timeline</a>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep426-metadata-for-python-software-packages-2-0">
+<span id="pep426s"></span><h2>PEP426 Metadata for Python Software Packages 2.0<a class="headerlink" href="#pep426-metadata-for-python-software-packages-2-0" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><a class="reference external" href="http://www.python.org/dev/peps/pep-0426/">PEP426</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body">Draft</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body">Specifies version 2.0 of the metadata format. Version 1.0 is specified
+in <a class="reference external" href="http://www.python.org/dev/peps/pep-0241/">PEP241</a>. Version 1.1 is specified in <a class="reference external" href="http://www.python.org/dev/peps/pep-0314/">PEP314</a>. Version 1.2 is
+specified in <a class="reference external" href="http://www.python.org/dev/peps/pep-0345/">PEP345</a>.  This is a work in progress, and represents a
+major upgrade to the Packaging ecosystem. <a class="reference internal" href="#pep440s"><em>PEP440</em></a> is a
+child of this PEP, and more PEPs are likely to grow out of this, as it
+evolves.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body">When this is accepted, users themselves will <em>not</em> do anything to
+adopt the new system, but rather projects like pip, setuptools,
+and PyPI will make changes to conform to it, and then surface new
+features and functionality to users that are based on top of the
+new system.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body">Most of the PEP is implemented in <a class="reference internal" href="projects.html#distlib"><em>distlib</em></a>, including
+the dependency metadata. Since the PEP is still in flux, the
+<tt class="docutils literal"><span class="pre">distlib</span></tt> implementation lags behind the most recent PEP
+changes, but most of the functionality in the PEP is covered.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep440-version-identification-and-dependency-specification">
+<span id="pep440s"></span><h2>PEP440 Version Identification and Dependency Specification<a class="headerlink" href="#pep440-version-identification-and-dependency-specification" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><a class="reference external" href="http://www.python.org/dev/peps/pep-0440/">PEP440</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body">Accepted</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body">Specifies a versioning system for Python projects that goes along with
+<a class="reference internal" href="#pep426s"><em>PEP426</em></a>, and replaces <a class="reference external" href="http://www.python.org/dev/peps/pep-0386/">PEP386</a>. This system will be
+mostly consistent with how most people version their
+projects today.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body">Users will have a clear specification for what&#8217;s proper
+versioning for Python projects.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body"><a class="reference internal" href="projects.html#distlib"><em>distlib</em></a> has version classes that understand PEP440, and
+pip relies on <a class="reference internal" href="projects.html#distlib"><em>distlib</em></a>&#8216;s implementation in specific
+cases. pip also has a <a class="reference external" href="https://github.com/pypa/pip/pull/1894">work-in-progress PR</a> that implements
+PEP440.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep458-surviving-a-compromise-of-pypi">
+<span id="pep458s"></span><h2>PEP458 Surviving a Compromise of PyPI<a class="headerlink" href="#pep458-surviving-a-compromise-of-pypi" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><a class="reference external" href="http://www.python.org/dev/peps/pep-0458/">PEP458</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body">Draft</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body">Specifies an integration of PyPI with the <a class="reference external" href="http://www.updateframework.com/projects/project">&#8220;The Update Framework&#8221;
+(TUF)</a>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body">pip will be more secure against various types of security attacks
+on PyPI and protect users against them.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body">Nothing at this time.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pep470-using-multi-index-support-for-external-to-pypi-package-file-hosting">
+<span id="pep70s"></span><h2>PEP470 Using Multi Index Support for External to PyPI Package File Hosting<a class="headerlink" href="#pep470-using-multi-index-support-for-external-to-pypi-package-file-hosting" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">PEP Link:</th><td class="field-body"><a class="reference external" href="http://www.python.org/dev/peps/pep-0470/">PEP470</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">PEP Status:</th><td class="field-body">Draft</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Summary:</th><td class="field-body">PyPI would no longer support projects configuring external hosting
+links that pip crawls and installs from automatically.  Projects would
+be allowed to configure external index links, but pip would never
+install from them automatically, but instead, only give users an
+informational message about what command they would use to do the
+install.  This PEP effectively reverts <a class="reference internal" href="#pep438s"><em>PEP438</em></a>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">User Impact:</th><td class="field-body">This would obsolete pip&#8217;s <tt class="docutils literal"><span class="pre">--allow-external</span></tt> and
+<tt class="docutils literal"><span class="pre">--allow-unverified</span></tt> links, because PyPI itself wouldn&#8217;t
+contain external or unverified links.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Implementation:</th><td class="field-body">Nothing at this time.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PEP Summaries</a><ul>
+<li><a class="reference internal" href="#pep376-database-of-installed-python-distributions">PEP376 Database of Installed Python Distributions</a></li>
+<li><a class="reference internal" href="#pep425-compatibility-tags-for-built-distributions">PEP425 Compatibility Tags for Built Distributions</a></li>
+<li><a class="reference internal" href="#pep427-the-wheel-binary-package-format-1-0">PEP427 The Wheel Binary Package Format 1.0</a></li>
+<li><a class="reference internal" href="#pep438-transitioning-to-release-file-hosting-on-pypi">PEP438 Transitioning to release-file hosting on PyPI</a></li>
+<li><a class="reference internal" href="#pep453-explicit-bootstrapping-of-pip-in-python-installations">PEP453 Explicit bootstrapping of pip in Python installations</a></li>
+<li><a class="reference internal" href="#pep426-metadata-for-python-software-packages-2-0">PEP426 Metadata for Python Software Packages 2.0</a></li>
+<li><a class="reference internal" href="#pep440-version-identification-and-dependency-specification">PEP440 Version Identification and Dependency Specification</a></li>
+<li><a class="reference internal" href="#pep458-surviving-a-compromise-of-pypi">PEP458 Surviving a Compromise of PyPI</a></li>
+<li><a class="reference internal" href="#pep470-using-multi-index-support-for-external-to-pypi-package-file-hosting">PEP470 Using Multi Index Support for External to PyPI Package File Hosting</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="projects.html"
+                        title="previous chapter">Project Summaries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="history.html"
+                        title="next chapter">Packaging History</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="history.html" title="Packaging History"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="projects.html" title="Project Summaries"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

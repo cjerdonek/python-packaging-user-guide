@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Concepts &amp; Analyses &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="up" title="Advanced Topics" href="additional.html" />
+    <link rel="next" title="Project Development" href="development.html" />
+    <link rel="prev" title="Advanced Topics" href="additional.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="development.html" title="Project Development"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="additional.html" title="Advanced Topics"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li>
+          <li><a href="additional.html" accesskey="U">Advanced Topics</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="concepts-analyses">
+<h1><a class="toc-backref" href="#id14">Concepts &amp; Analyses</a><a class="headerlink" href="#concepts-analyses" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Incomplete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-04-09</td>
+</tr>
+</tbody>
+</table>
+<p>This section covers various packaging concepts and analyses.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#concepts-analyses" id="id14">Concepts &amp; Analyses</a><ul>
+<li><a class="reference internal" href="#packaging-formats" id="id15">Packaging Formats</a></li>
+<li><a class="reference internal" href="#installation-schemes" id="id16">Installation Schemes</a></li>
+<li><a class="reference internal" href="#install-requires-vs-requirements-files" id="id17">install_requires vs Requirements files</a><ul>
+<li><a class="reference internal" href="#install-requires" id="id18">install_requires</a></li>
+<li><a class="reference internal" href="#requirements-files" id="id19">Requirements files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pip-vs-easy-install" id="id20">pip vs easy_install</a></li>
+<li><a class="reference internal" href="#easy-install-and-sys-path" id="id21">easy_install and sys.path</a></li>
+<li><a class="reference internal" href="#wheel-vs-egg" id="id22">Wheel vs Egg</a></li>
+<li><a class="reference internal" href="#multi-version-installs" id="id23">Multi-version Installs</a></li>
+<li><a class="reference internal" href="#dependency-resolution" id="id24">Dependency Resolution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="packaging-formats">
+<h2><a class="toc-backref" href="#id15">Packaging Formats</a><a class="headerlink" href="#packaging-formats" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>FIXME
+
+1) sdist and wheel are the most relevant currently
+2) what defines an sdist? (sdist 2.0 is coming)
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation-schemes">
+<h2><a class="toc-backref" href="#id16">Installation Schemes</a><a class="headerlink" href="#installation-schemes" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>FIXME
+
+1. distutils/sysconfig schemes
+2. global vs user installs
+3. virtual environments
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-requires-vs-requirements-files">
+<span id="id1"></span><h2><a class="toc-backref" href="#id17">install_requires vs Requirements files</a><a class="headerlink" href="#install-requires-vs-requirements-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-requires">
+<h3><a class="toc-backref" href="#id18">install_requires</a><a class="headerlink" href="#install-requires" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">install_requires</span></tt> is a <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> <tt class="docutils literal"><span class="pre">setup.py</span></tt> keyword that should be
+used to specify what a project <strong>minimally</strong> needs to run correctly.  When the
+project is installed by <a class="reference internal" href="projects.html#pip"><em>pip</em></a>, this is the specification that is used to
+install its dependencies.</p>
+<p>For example, if the project requires A and B, your <tt class="docutils literal"><span class="pre">install_requires</span></tt> would be
+like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
+   <span class="s">&#39;A&#39;</span><span class="p">,</span>
+   <span class="s">&#39;B&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Additionally, it&#8217;s best practice to indicate any known lower or upper bounds.</p>
+<p>For example, it may be known, that your project requires at least v1 of &#8216;A&#8217;, and
+v2 of &#8216;B&#8217;, so it would be like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
+   <span class="s">&#39;A&gt;=1&#39;</span><span class="p">,</span>
+   <span class="s">&#39;B&gt;=2&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>It may also be known that project A follows semantic versioning, and that v2 of
+&#8216;A&#8217; will indicate a break in compatibility, so it makes sense to not allow v2:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
+   <span class="s">&#39;A&gt;=1,&lt;2&#39;</span><span class="p">,</span>
+   <span class="s">&#39;B&gt;=2&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>It is not considered best practice to use <tt class="docutils literal"><span class="pre">install_requires</span></tt> to pin
+dependencies to specific versions, or to specify sub-dependencies
+(i.e. dependencies of your dependencies).  This is overly-restrictive, and
+prevents the user from gaining the benefit of dependency upgrades.</p>
+<p>Lastly, it&#8217;s important to understand that <tt class="docutils literal"><span class="pre">install_requires</span></tt> is a listing of
+&#8220;Abstract&#8221; requirements, i.e just names and version restrictions that don&#8217;t
+determine where the dependencies will be fulfilled from (i.e. from what
+index or source).  The where (i.e. how they are to be made &#8220;Concrete&#8221;) is to
+be determined at install time using <a class="reference internal" href="projects.html#pip"><em>pip</em></a> options. <a class="footnote-reference" href="#id13" id="id2">[3]</a></p>
+</div>
+<div class="section" id="requirements-files">
+<h3><a class="toc-backref" href="#id19">Requirements files</a><a class="headerlink" href="#requirements-files" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#requirements-files" title="(in pip v1.5)"><em class="xref std std-ref">Requirements Files</em></a> described most simply, are
+just a list of <a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_install.html#pip-install" title="(in pip v1.5)"><em>pip install</em></a> arguments placed into a file.</p>
+<p>Whereas <tt class="docutils literal"><span class="pre">install_requires</span></tt> defines the dependencies for a single project,
+<a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#requirements-files" title="(in pip v1.5)"><em class="xref std std-ref">Requirements Files</em></a> are often used to define
+the requirements for a complete python environment.</p>
+<p>Whereas <tt class="docutils literal"><span class="pre">install_requires</span></tt> requirements are minimal, requirements files
+often contain an exhaustive listing of pinned versions for the purpose of
+achieving <a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#repeatability" title="(in pip v1.5)"><em class="xref std std-ref">repeatable installations</em></a> of a complete
+environment.</p>
+<p>Whereas <tt class="docutils literal"><span class="pre">install_requires</span></tt> requirements are &#8220;Abstract&#8221;, requirements files
+often contain pip options like <tt class="docutils literal"><span class="pre">--index-url</span></tt> or <tt class="docutils literal"><span class="pre">--find-links</span></tt> to make
+requirements &#8220;Concrete&#8221;. <a class="footnote-reference" href="#id13" id="id3">[3]</a></p>
+<p>Whereas <tt class="docutils literal"><span class="pre">install_requires</span></tt> metadata is automatically analyzed by pip during an
+install, requirements files are not, and only are used when a user specifically
+installs them using <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="pip-vs-easy-install">
+<span id="id4"></span><h2><a class="toc-backref" href="#id20">pip vs easy_install</a><a class="headerlink" href="#pip-vs-easy-install" title="Permalink to this headline">¶</a></h2>
+<p><cite>easy_install</cite> was released in 2004, as part of <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>.  It was
+notable at the time for installing <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a> from
+<a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> using requirement specifiers, and
+automatically installing dependencies.</p>
+<p><a class="reference internal" href="projects.html#pip"><em>pip</em></a> came later in 2008, as alternative to <cite>easy_install</cite>, although still
+largely built on top of <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> components.  It was notable at the
+time for <em>not</em> installing packages as <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Eggs</em></a> or from <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Eggs</em></a> (but
+rather simply as &#8216;flat&#8217; packages from <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">sdists</em></a>), and introducing the idea of <a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#requirements-files" title="(in pip v1.5)"><em class="xref std std-ref">Requirements Files</em></a>, which gave users the power to easily replicate
+environments.</p>
+<p>Here&#8217;s a breakdown of the important differences between pip and easy_install now:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="36%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td><strong>pip</strong></td>
+<td><strong>easy_install</strong></td>
+</tr>
+<tr class="row-even"><td>Installs from <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheels</em></a></td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>Uninstall Distributions</td>
+<td>Yes (<tt class="docutils literal"><span class="pre">pip</span> <span class="pre">uninstall</span></tt>)</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td>Dependency Overrides</td>
+<td>Yes (<a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#requirements-files" title="(in pip v1.5)"><em class="xref std std-ref">Requirements Files</em></a>)</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>List Installed Distributions</td>
+<td>Yes (<tt class="docutils literal"><span class="pre">pip</span> <span class="pre">list</span></tt> and <tt class="docutils literal"><span class="pre">pip</span>
+<span class="pre">freeze</span></tt>)</td>
+<td>No</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="peps.html#pep438s"><em>PEP438</em></a>
+Support</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>Installation format</td>
+<td>&#8216;Flat&#8217; packages with <cite>egg-info</cite>
+metadata.</td>
+<td>Encapsulated Egg format</td>
+</tr>
+<tr class="row-even"><td>sys.path modification</td>
+<td>No</td>
+<td><a class="reference internal" href="#easy-install-and-sys-path"><em>Yes</em></a></td>
+</tr>
+<tr class="row-odd"><td>Installs from <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Eggs</em></a></td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://bitbucket.org/pypa/pylauncher">pylauncher support</a></td>
+<td>No</td>
+<td>Yes <a class="footnote-reference" href="#id6" id="id5">[1]</a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dependency-resolution"><em>Dependency Resolution</em></a></td>
+<td><a class="reference internal" href="#dependency-resolution"><em>Kinda</em></a></td>
+<td><a class="reference internal" href="#dependency-resolution"><em>Kinda</em></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#multi-version-installs"><em>Multi-version Installs</em></a></td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[1]</a></td><td><a class="reference external" href="http://pythonhosted.org/setuptools/easy_install.html#natural-script-launcher">http://pythonhosted.org/setuptools/easy_install.html#natural-script-launcher</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="easy-install-and-sys-path">
+<span id="id7"></span><h2><a class="toc-backref" href="#id21">easy_install and sys.path</a><a class="headerlink" href="#easy-install-and-sys-path" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>FIXME
+
+- global easy_install&#39;d distributions override --user installs
+</pre></div>
+</div>
+</div>
+<div class="section" id="wheel-vs-egg">
+<span id="id8"></span><h2><a class="toc-backref" href="#id22">Wheel vs Egg</a><a class="headerlink" href="#wheel-vs-egg" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> has an <a class="reference internal" href="peps.html#pep427s"><em>official PEP</em></a>. <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Egg</em></a> did not.</li>
+<li><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> is a <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distribution</em></a> format, i.e a packaging
+format. <a class="footnote-reference" href="#id12" id="id9">[2]</a> <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Egg</em></a> was both a distribution format and a runtime
+installation format (if left zipped), and was designed to be importable.</li>
+<li><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> archives do not include .pyc files. Therefore, when the
+distribution only contains python files (i.e. no compiled extensions), and is
+compatible with Python 2 and 3, it&#8217;s possible for a wheel to be &#8220;universal&#8221;,
+similar to an <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">sdist</em></a>.</li>
+<li><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> uses <a class="reference internal" href="peps.html#pep376s"><em>PEP376-compliant</em></a> <tt class="docutils literal"><span class="pre">.dist-info</span></tt>
+directories. Egg used <tt class="docutils literal"><span class="pre">.egg-info</span></tt>.</li>
+<li><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> has a <a class="reference internal" href="peps.html#pep425s"><em>richer file naming convention</em></a>. A single
+wheel archive can indicate its compatibility with a number of Python language
+versions and implementations, ABIs, and system architectures.</li>
+<li><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> is versioned. Every wheel file contains the version of the wheel
+specification and the implementation that packaged it.</li>
+<li><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> is internally organized by <a class="reference external" href="http://docs.python.org/2/library/sysconfig.html#installation-paths">sysconfig path type</a>,
+therefore making it easier to convert to other formats.</li>
+</ul>
+</div>
+<div class="section" id="multi-version-installs">
+<span id="id10"></span><h2><a class="toc-backref" href="#id23">Multi-version Installs</a><a class="headerlink" href="#multi-version-installs" title="Permalink to this headline">¶</a></h2>
+<p>easy_install allows simultaneous installation of different versions of the same
+project into a single environment shared by multiple programs which must
+<tt class="docutils literal"><span class="pre">require</span></tt> the appropriate version of the project at run time (using
+<tt class="docutils literal"><span class="pre">pkg_resources</span></tt>).</p>
+<p>For many use cases, virtual environments address this need without the
+complication of the <tt class="docutils literal"><span class="pre">require</span></tt> directive. However, the advantage of
+parallel installations within the same environment is that it works for an
+environment shared by multiple applications, such as the system Python in a
+Linux distribution.</p>
+<p>The major limitation of <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> based parallel installation is
+that as soon as you import <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> it locks in the <em>default</em>
+version of everything which is already available on sys.path. This can
+cause problems, since <tt class="docutils literal"><span class="pre">setuptools</span></tt> created command line scripts
+use <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> to find the entry point to execute. This means that,
+for example, you can&#8217;t use <tt class="docutils literal"><span class="pre">require</span></tt> tests invoked through <tt class="docutils literal"><span class="pre">nose</span></tt> or a
+WSGI application invoked through <tt class="docutils literal"><span class="pre">gunicorn</span></tt> if your application needs a
+non-default version of anything that is available on the standard
+<tt class="docutils literal"><span class="pre">sys.path</span></tt> - the script wrapper for the main application will lock in the
+version that is available by default, so the subsequent <tt class="docutils literal"><span class="pre">require</span></tt> call
+in your own code fails with a spurious version conflict.</p>
+<p>This can be worked around by setting all dependencies in
+<tt class="docutils literal"><span class="pre">__main__.__requires__</span></tt> before importing <tt class="docutils literal"><span class="pre">pkg_resources</span></tt> for the first
+time, but that approach does mean that standard command line invocations of
+the affected tools can&#8217;t be used - it&#8217;s necessary to write a custom
+wrapper script or use <tt class="docutils literal"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">'&lt;commmand&gt;'</span></tt> to invoke the application&#8217;s
+main entry point directly.</p>
+<p>Refer to the <a class="reference external" href="http://pythonhosted.org/setuptools/pkg_resources.html#workingset-objects">pkg_resources documentation</a>
+for more details.</p>
+</div>
+<div class="section" id="dependency-resolution">
+<span id="id11"></span><h2><a class="toc-backref" href="#id24">Dependency Resolution</a><a class="headerlink" href="#dependency-resolution" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>FIXME
+
+what to cover:
+- pip lacking a true resolver (currently, &quot;1st found wins&quot;; practical for overriding in requirements files)
+- easy_install will raise an error if mutually-incompatible versions of a dependency tree are installed.
+- console_scripts complaining about conflicts
+- scenarios to breakdown:
+   - conficting dependencies within the dep tree of one argument `
+   - conflicts across arguments: ``pip|easy_install  OneProject TwoProject``
+   - conflicts with what&#39;s already installed
+</pre></div>
+</div>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[2]</a></td><td>Circumstantially, in some cases, wheels can be used as an importable
+runtime format, although <a class="reference external" href="http://www.python.org/dev/peps/pep-0427/#is-it-possible-to-import-python-code-directly-from-a-wheel-file">this is not officially supported at this time</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> For more on &#8220;Abstract&#8221; vs &#8220;Concrete&#8221; requirements, see
+<a class="reference external" href="https://caremad.io/blog/setup-vs-requirement">https://caremad.io/blog/setup-vs-requirement</a>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Concepts &amp; Analyses</a><ul>
+<li><a class="reference internal" href="#packaging-formats">Packaging Formats</a></li>
+<li><a class="reference internal" href="#installation-schemes">Installation Schemes</a></li>
+<li><a class="reference internal" href="#install-requires-vs-requirements-files">install_requires vs Requirements files</a><ul>
+<li><a class="reference internal" href="#install-requires">install_requires</a></li>
+<li><a class="reference internal" href="#requirements-files">Requirements files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pip-vs-easy-install">pip vs easy_install</a></li>
+<li><a class="reference internal" href="#easy-install-and-sys-path">easy_install and sys.path</a></li>
+<li><a class="reference internal" href="#wheel-vs-egg">Wheel vs Egg</a></li>
+<li><a class="reference internal" href="#multi-version-installs">Multi-version Installs</a></li>
+<li><a class="reference internal" href="#dependency-resolution">Dependency Resolution</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="additional.html"
+                        title="previous chapter">Advanced Topics</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="development.html"
+                        title="next chapter">Project Development</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="development.html" title="Project Development"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="additional.html" title="Advanced Topics"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li>
+          <li><a href="additional.html" >Advanced Topics</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

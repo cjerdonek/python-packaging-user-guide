@@ -1,0 +1,676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Building Binary Wheels for Windows using Appveyor &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="up" title="Advanced Topics" href="additional.html" />
+    <link rel="next" title="OS Specifics" href="os.html" />
+    <link rel="prev" title="Installing Scientific Distributions" href="science.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="os.html" title="OS Specifics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="science.html" title="Installing Scientific Distributions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li>
+          <li><a href="additional.html" accesskey="U">Advanced Topics</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="building-binary-wheels-for-windows-using-appveyor">
+<h1><a class="toc-backref" href="#id2">Building Binary Wheels for Windows using Appveyor</a><a class="headerlink" href="#building-binary-wheels-for-windows-using-appveyor" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Incomplete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-09-27</td>
+</tr>
+</tbody>
+</table>
+<p>This section covers how to use the free <a class="reference external" href="http://www.appveyor.com/">Appveyor</a> continuous integration
+service to build Windows-targeted binary wheels for your project.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#building-binary-wheels-for-windows-using-appveyor" id="id2">Building Binary Wheels for Windows using Appveyor</a><ul>
+<li><a class="reference internal" href="#background" id="id3">Background</a></li>
+<li><a class="reference internal" href="#setting-up" id="id4">Setting Up</a></li>
+<li><a class="reference internal" href="#adding-appveyor-support-to-your-project" id="id5">Adding Appveyor support to your project</a><ul>
+<li><a class="reference internal" href="#appveyor-yml" id="id6">appveyor.yml</a></li>
+<li><a class="reference internal" href="#support-scripts" id="id7">Support scripts</a></li>
+<li><a class="reference internal" href="#access-to-the-built-wheels" id="id8">Access to the built wheels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#additional-notes" id="id9">Additional Notes</a><ul>
+<li><a class="reference internal" href="#automatically-uploading-wheels" id="id10">Automatically uploading wheels</a></li>
+<li><a class="reference internal" href="#external-dependencies" id="id11">External dependencies</a></li>
+<li><a class="reference internal" href="#possible-issues" id="id12">Possible issues</a></li>
+<li><a class="reference internal" href="#id1" id="id13">Support scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="background">
+<h2><a class="toc-backref" href="#id3">Background</a><a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Windows users typically do not have access to a C compiler, and therefore are
+reliant on projects that use C extensions distributing binary wheels on PyPI in
+order for the distribution to be installable via <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">dist`</span></tt>.
+However, it is often the case that projects which are intended to be
+cross-platform are developed on Unix, and so the project developers <em>also</em> have
+the problem of lack of access to a Windows compiler.</p>
+<p>The Appveyor service is a continuous integration service, much like the
+better-known <a class="reference external" href="https://travis-ci.org/">Travis</a> service that is commonly used for testing by projects
+hosted on <a class="reference external" href="https://github.org/">Github</a>. However, unlike Travis, the build workers on Appveyor are
+Windows hosts and have the necessary compilers installed to build Python
+extensions.</p>
+</div>
+<div class="section" id="setting-up">
+<h2><a class="toc-backref" href="#id4">Setting Up</a><a class="headerlink" href="#setting-up" title="Permalink to this headline">¶</a></h2>
+<p>In order to use Appveyor to build Windows wheels for your project, you must
+have an account on the service. Instructions on setting up an account are given
+in <a class="reference external" href="http://www.appveyor.com/docs">the Appveyor documentation</a>. The free tier
+of account is perfectly adequate for open source projects.</p>
+<p>Appveyor provides integration with <a class="reference external" href="https://github.org/">Github</a> and <a class="reference external" href="https://bitbucket.org/">Bitbucket</a>, so as long as
+your project is hosted on one of those two services, setting up Appveyor
+integration is straightforward.</p>
+<p>Once you have set up your Appveyor account and added your project, Appveyor will
+automatically build your project each time a commit occurs. This behaviour will
+be familiar to users of Travis.</p>
+</div>
+<div class="section" id="adding-appveyor-support-to-your-project">
+<h2><a class="toc-backref" href="#id5">Adding Appveyor support to your project</a><a class="headerlink" href="#adding-appveyor-support-to-your-project" title="Permalink to this headline">¶</a></h2>
+<p>In order to define how Appveyor should build your project, you need to add an
+<tt class="docutils literal"><span class="pre">appveyor.yml</span></tt> file to your project. The full details of what can be included
+in the file are covered in the Appveyor documentation. This guide will provide
+the details necessary to set up wheel builds.</p>
+<div class="section" id="appveyor-yml">
+<h3><a class="toc-backref" href="#id6">appveyor.yml</a><a class="headerlink" href="#appveyor-yml" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="highlight"><pre><span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+
+  <span class="l-Scalar-Plain">global</span><span class="p-Indicator">:</span>
+    <span class="c1"># SDK v7.0 MSVC Express 2008&#39;s SetEnv.cmd script will fail if the</span>
+    <span class="c1"># /E:ON and /V:ON options are not enabled in the batch script intepreter</span>
+    <span class="c1"># See: http://stackoverflow.com/a/13751649/163740</span>
+    <span class="l-Scalar-Plain">WITH_COMPILER</span><span class="p-Indicator">:</span> <span class="s">&quot;cmd</span><span class="nv"> </span><span class="s">/E:ON</span><span class="nv"> </span><span class="s">/V:ON</span><span class="nv"> </span><span class="s">/C</span><span class="nv"> </span><span class="s">.\\appveyor\\run_with_compiler.cmd&quot;</span>
+
+  <span class="l-Scalar-Plain">matrix</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PYTHON</span><span class="p-Indicator">:</span> <span class="s">&quot;C:\\Python27&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;2.7.8&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_ARCH</span><span class="p-Indicator">:</span> <span class="s">&quot;32&quot;</span>
+
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PYTHON</span><span class="p-Indicator">:</span> <span class="s">&quot;C:\\Python33&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;3.3.5&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_ARCH</span><span class="p-Indicator">:</span> <span class="s">&quot;32&quot;</span>
+
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PYTHON</span><span class="p-Indicator">:</span> <span class="s">&quot;C:\\Python34&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;3.4.1&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_ARCH</span><span class="p-Indicator">:</span> <span class="s">&quot;32&quot;</span>
+
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PYTHON</span><span class="p-Indicator">:</span> <span class="s">&quot;C:\\Python27-x64&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;2.7.8&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_ARCH</span><span class="p-Indicator">:</span> <span class="s">&quot;64&quot;</span>
+      <span class="l-Scalar-Plain">WINDOWS_SDK_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;v7.0&quot;</span>
+
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PYTHON</span><span class="p-Indicator">:</span> <span class="s">&quot;C:\\Python33-x64&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;3.3.5&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_ARCH</span><span class="p-Indicator">:</span> <span class="s">&quot;64&quot;</span>
+      <span class="l-Scalar-Plain">WINDOWS_SDK_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;v7.1&quot;</span>
+
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PYTHON</span><span class="p-Indicator">:</span> <span class="s">&quot;C:\\Python34-x64&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;3.4.1&quot;</span>
+      <span class="l-Scalar-Plain">PYTHON_ARCH</span><span class="p-Indicator">:</span> <span class="s">&quot;64&quot;</span>
+      <span class="l-Scalar-Plain">WINDOWS_SDK_VERSION</span><span class="p-Indicator">:</span> <span class="s">&quot;v7.1&quot;</span>
+
+<span class="l-Scalar-Plain">init</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="s">&quot;ECHO</span><span class="nv"> </span><span class="s">%PYTHON%</span><span class="nv"> </span><span class="s">%PYTHON_VERSION%</span><span class="nv"> </span><span class="s">%PYTHON_ARCH%&quot;</span>
+
+<span class="l-Scalar-Plain">install</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="s">&quot;powershell</span><span class="nv"> </span><span class="s">appveyor\\install.ps1&quot;</span>
+
+<span class="l-Scalar-Plain">build</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">off</span>
+
+<span class="l-Scalar-Plain">test_script</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="s">&quot;%WITH_COMPILER%</span><span class="nv"> </span><span class="s">%PYTHON%/python</span><span class="nv"> </span><span class="s">setup.py</span><span class="nv"> </span><span class="s">test&quot;</span>
+
+<span class="l-Scalar-Plain">after_test</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="s">&quot;%WITH_COMPILER%</span><span class="nv"> </span><span class="s">%PYTHON%/python</span><span class="nv"> </span><span class="s">setup.py</span><span class="nv"> </span><span class="s">bdist_wheel&quot;</span>
+
+<span class="l-Scalar-Plain">artifacts</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">path</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">dist\*</span>
+
+<span class="c1">#on_success:</span>
+<span class="c1">#  - TODO: upload the content of dist/*.whl to a public wheelhouse</span>
+</pre></div>
+</td></tr></table></div>
+<p>This file can be downloaded from <a class="reference external" href="https://raw.githubusercontent.com/pypa/python-packaging-user-guide/master/source/code/appveyor.yml">here</a>.</p>
+<p>The <tt class="docutils literal"><span class="pre">appveyor.yml</span></tt> file must be located in the root directory of your
+project. It is in <tt class="docutils literal"><span class="pre">YAML</span></tt> format, and consists of a number of sections.</p>
+<p>The <tt class="docutils literal"><span class="pre">environment</span></tt> section is the key to defining the Python versions for
+which your wheels will be created. Appveyor comes with Python 2.7, 3.3 and 3.4
+installed, in both 32-bit and 64-bit builds. The example file builds for all of
+these environments.</p>
+<p>The <tt class="docutils literal"><span class="pre">install</span></tt> section installs any additional software that the project may
+require. The supplied code installs <tt class="docutils literal"><span class="pre">pip</span></tt> (if needed) and <tt class="docutils literal"><span class="pre">wheel</span></tt>. Projects
+may wish to customise this code in certain circumstances (for example, to install
+additional build packages such as <tt class="docutils literal"><span class="pre">Cython</span></tt>, or test tools such as <tt class="docutils literal"><span class="pre">tox</span></tt>).</p>
+<p>The <tt class="docutils literal"><span class="pre">build</span></tt> section simply switches off builds - there is no build step needed
+for Python, unlike languages like <tt class="docutils literal"><span class="pre">C#</span></tt>.</p>
+<p>The <tt class="docutils literal"><span class="pre">test_script</span></tt> section is technically not needed. The supplied file runs
+your test suite using <tt class="docutils literal"><span class="pre">setup.py</span> <span class="pre">test</span></tt>. You may wish to use another test tool
+such as <tt class="docutils literal"><span class="pre">tox</span></tt> or <tt class="docutils literal"><span class="pre">py.test</span></tt>. Or you could skip the test (but why would you,
+unless your tests are expected to fail on Windows?) by replacing the script with
+a simple <tt class="docutils literal"><span class="pre">echo</span> <span class="pre">Skipped</span></tt> command.</p>
+<p>The <tt class="docutils literal"><span class="pre">after_test</span></tt> command is where the wheels are built. Assuming your project
+uses the recommended tools (specifically, <tt class="docutils literal"><span class="pre">setuptools</span></tt>) then the
+<tt class="docutils literal"><span class="pre">setup.py</span> <span class="pre">bdist_wheel</span></tt> command will build your wheels.</p>
+<p>Note that wheels will only be built if your tests succeed. If you expect your
+tests to fail on Windows, you can skip them as described above.</p>
+</div>
+<div class="section" id="support-scripts">
+<h3><a class="toc-backref" href="#id7">Support scripts</a><a class="headerlink" href="#support-scripts" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">appveyor.yml</span></tt> file relies on two support scripts. The code assumes that
+these will be placed in a subdirectory named <tt class="docutils literal"><span class="pre">appveyor</span></tt> at the root of your
+project.</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pypa/python-packaging-user-guide/master/source/code/run_with_compiler.cmd">appveyor/run_with_compiler.cmd</a>
+is a Windows batch script that runs a single command in an environment with the
+appropriate compiler for the selected Python version.</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/pypa/python-packaging-user-guide/master/source/code/install.ps1">appveyor/install.ps1</a> is a Powershell
+script that downloads and installs any missing Python versions, installs
+<tt class="docutils literal"><span class="pre">pip</span></tt> into the Python <tt class="docutils literal"><span class="pre">site-packages</span></tt> and downloads and installs the latest
+<tt class="docutils literal"><span class="pre">wheel</span></tt> distribution. Steps that are not needed are omitted, so in practice,
+the Python install will never be run (it is present for advanced users who want
+to install additional versions of Python not supplied by Appveyor) and the
+<tt class="docutils literal"><span class="pre">pip</span></tt> install will be omitted for Python 3.4, where pip is installed as
+standard.</p>
+<p>You can simply download these two files and include them in your project
+unchanged.</p>
+</div>
+<div class="section" id="access-to-the-built-wheels">
+<h3><a class="toc-backref" href="#id8">Access to the built wheels</a><a class="headerlink" href="#access-to-the-built-wheels" title="Permalink to this headline">¶</a></h3>
+<p>When your build completes, the built wheels will be available from the Appveyor
+control panel for your project. They can be found by going to the build status
+page for each build in turn. At the top of the build output there is a series
+of links, one of which is &#8220;Artifacts&#8221;. That page will include a list of links
+to the wheels for that Python version / architecture. You can download those
+wheels and upload them to PyPI as part of your release process.</p>
+</div>
+</div>
+<div class="section" id="additional-notes">
+<h2><a class="toc-backref" href="#id9">Additional Notes</a><a class="headerlink" href="#additional-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="automatically-uploading-wheels">
+<h3><a class="toc-backref" href="#id10">Automatically uploading wheels</a><a class="headerlink" href="#automatically-uploading-wheels" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to request Appveyor to automatically upload wheels. There is a
+<tt class="docutils literal"><span class="pre">deployment</span></tt> step available in <tt class="docutils literal"><span class="pre">appveyor.yml</span></tt> that can be used to (for
+example) copy the built artifacts to a FTP site, or an Amazon S3 instance.
+Documentation on how to do this is included in the Appveyor guides.</p>
+<p>Alternatively, it would be possible to add a <tt class="docutils literal"><span class="pre">twine</span> <span class="pre">upload</span></tt> step to the
+build.  The supplied <tt class="docutils literal"><span class="pre">appveyor.yml</span></tt> does not do this, as it is not clear that
+uploading new wheels after every commit is desirable (although some projects
+may wish to do this).</p>
+</div>
+<div class="section" id="external-dependencies">
+<h3><a class="toc-backref" href="#id11">External dependencies</a><a class="headerlink" href="#external-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>The supplied scripts will successfully build any distribution that does not
+rely on 3rd party external libraries for the build. It would be possible for an
+individual project to add code to the <tt class="docutils literal"><span class="pre">install.ps1</span></tt> script to make external
+libraries available to the build, but this is of necessity specific to
+individual projects.</p>
+<p>Should projects develop scripts showing how to do this, references will be
+added to this guide at a later date.</p>
+</div>
+<div class="section" id="possible-issues">
+<h3><a class="toc-backref" href="#id12">Possible issues</a><a class="headerlink" href="#possible-issues" title="Permalink to this headline">¶</a></h3>
+<p>The webhooks installed by Appveyor for github projects report on the build
+success on the project page, in much the same way as the Travis webhooks do.
+There is a limitation on the github reporting API, which means that only one
+build result is currently shown for a project - so if your project uses both
+Travis and Appveyor, only one will be displayed. The github team are aware of
+this limitation, and are planning on fixing it. In the meantime, however, it
+can sometimes be necessary to check the build results by going to the project
+page in the CI system directly.</p>
+<p>Note that failed builds are <em>always</em> reported by github, so this issue does not
+mean that projects could find failures being missed.</p>
+</div>
+<div class="section" id="id1">
+<h3><a class="toc-backref" href="#id13">Support scripts</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>For reference, the two support scripts are listed here:</p>
+<p><tt class="docutils literal"><span class="pre">code/run_with_compiler.cmd</span></tt></p>
+<div class="highlight-bat"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">:: To build extensions for 64 bit Python 3, we need to configure environment</span>
+<span class="c">:: variables to use the MSVC 2010 C++ compilers from GRMSDKX_EN_DVD.iso of:</span>
+<span class="c">:: MS Windows SDK for Windows 7 and .NET Framework 4 (SDK v7.1)</span>
+<span class="c">::</span>
+<span class="c">:: To build extensions for 64 bit Python 2, we need to configure environment</span>
+<span class="c">:: variables to use the MSVC 2008 C++ compilers from GRMSDKX_EN_DVD.iso of:</span>
+<span class="c">:: MS Windows SDK for Windows 7 and .NET Framework 3.5 (SDK v7.0)</span>
+<span class="c">::</span>
+<span class="c">:: 32 bit builds do not require specific environment configurations.</span>
+<span class="c">::</span>
+<span class="c">:: Note: this script needs to be run with the /E:ON and /V:ON flags for the</span>
+<span class="c">:: cmd interpreter, at least for (SDK v7.0)</span>
+<span class="c">::</span>
+<span class="c">:: More details at:</span>
+<span class="c">:: https://github.com/cython/cython/wiki/64BitCythonExtensionsOnWindows</span>
+<span class="c">:: http://stackoverflow.com/a/13751649/163740</span>
+<span class="c">::</span>
+<span class="c">:: Author: Olivier Grisel</span>
+<span class="c">:: License: CC0 1.0 Universal: http://creativecommons.org/publicdomain/zero/1.0/</span>
+<span class="p">@</span><span class="k">ECHO</span> <span class="k">OFF</span>
+
+<span class="k">SET</span> <span class="nv">COMMAND_TO_RUN</span><span class="o">=</span>%*
+<span class="k">SET</span> <span class="nv">WIN_SDK_ROOT</span><span class="o">=</span>C:\Program Files\Microsoft SDKs\Windows
+
+<span class="k">SET</span> <span class="nv">MAJOR_PYTHON_VERSION</span><span class="o">=</span><span class="s2">&quot;%PYTHON_VERSION:~0,1%&quot;</span>
+<span class="k">IF</span> <span class="nv">%MAJOR_PYTHON_VERSION%</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span> (
+    <span class="k">SET</span> <span class="nv">WINDOWS_SDK_VERSION</span><span class="o">=</span><span class="s2">&quot;v7.0&quot;</span>
+) <span class="k">ELSE</span> <span class="k">IF</span> <span class="nv">%MAJOR_PYTHON_VERSION%</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span> (
+    <span class="k">SET</span> <span class="nv">WINDOWS_SDK_VERSION</span><span class="o">=</span><span class="s2">&quot;v7.1&quot;</span>
+) <span class="k">ELSE</span> (
+    <span class="k">ECHO</span> Unsupported Python version: <span class="s2">&quot;%MAJOR_PYTHON_VERSION%&quot;</span>
+    EXIT <span class="m">1</span>
+)
+
+<span class="k">IF</span> <span class="s2">&quot;%PYTHON_ARCH%&quot;</span><span class="o">==</span><span class="s2">&quot;64&quot;</span> (
+    <span class="k">ECHO</span> Configuring Windows SDK <span class="nv">%WINDOWS_SDK_VERSION%</span> <span class="k">for</span> Python <span class="nv">%MAJOR_PYTHON_VERSION%</span> <span class="k">on</span> a <span class="m">64</span> bit architecture
+    <span class="k">SET</span> <span class="nv">DISTUTILS_USE_SDK</span><span class="o">=</span><span class="m">1</span>
+    <span class="k">SET</span> <span class="nv">MSSdk</span><span class="o">=</span><span class="m">1</span>
+    <span class="s2">&quot;%WIN_SDK_ROOT%\%WINDOWS_SDK_VERSION%\Setup\WindowsSdkVer.exe&quot;</span> -q -version:<span class="nv">%WINDOWS_SDK_VERSION%</span>
+    <span class="s2">&quot;%WIN_SDK_ROOT%\%WINDOWS_SDK_VERSION%\Bin\SetEnv.cmd&quot;</span> <span class="n">/x64</span> <span class="n">/release</span>
+    <span class="k">ECHO</span> Executing: <span class="nv">%COMMAND_TO_RUN%</span>
+    <span class="k">call</span> <span class="nv">%COMMAND_TO_RUN%</span> |<span class="p">|</span> <span class="n">EXIT</span> <span class="m">1</span>
+) <span class="k">ELSE</span> (
+    <span class="k">ECHO</span> Using default MSVC build environment <span class="k">for</span> <span class="m">32</span> bit architecture
+    <span class="k">ECHO</span> Executing: <span class="nv">%COMMAND_TO_RUN%</span>
+    <span class="k">call</span> <span class="nv">%COMMAND_TO_RUN%</span> |<span class="p">|</span> <span class="n">EXIT</span> <span class="m">1</span>
+)
+</pre></div>
+</td></tr></table></div>
+<p><tt class="docutils literal"><span class="pre">code/install.ps1</span></tt></p>
+<div class="highlight-powershell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre></div></td><td class="code"><div class="highlight"><pre># Sample script to install Python and pip under Windows
+# Authors: Olivier Grisel and Kyle Kastner
+# License: CC0 1.0 Universal: http://creativecommons.org/publicdomain/zero/1.0/
+
+$BASE_URL = &quot;https://www.python.org/ftp/python/&quot;
+$GET_PIP_URL = &quot;https://bootstrap.pypa.io/get-pip.py&quot;
+$GET_PIP_PATH = &quot;C:\get-pip.py&quot;
+
+
+function DownloadPython ($python_version, $platform_suffix) {
+    $webclient = New-Object System.Net.WebClient
+    $filename = &quot;python-&quot; + $python_version + $platform_suffix + &quot;.msi&quot;
+    $url = $BASE_URL + $python_version + &quot;/&quot; + $filename
+
+    $basedir = $pwd.Path + &quot;\&quot;
+    $filepath = $basedir + $filename
+    if (Test-Path $filename) {
+        Write-Host &quot;Reusing&quot; $filepath
+        return $filepath
+    }
+
+    # Download and retry up to 5 times in case of network transient errors.
+    Write-Host &quot;Downloading&quot; $filename &quot;from&quot; $url
+    $retry_attempts = 3
+    for($i=0; $i -lt $retry_attempts; $i++){
+        try {
+            $webclient.DownloadFile($url, $filepath)
+            break
+        }
+        Catch [Exception]{
+            Start-Sleep 1
+        }
+   }
+   Write-Host &quot;File saved at&quot; $filepath
+   return $filepath
+}
+
+
+function InstallPython ($python_version, $architecture, $python_home) {
+    Write-Host &quot;Installing Python&quot; $python_version &quot;for&quot; $architecture &quot;bit architecture to&quot; $python_home
+    if (Test-Path $python_home) {
+        Write-Host $python_home &quot;already exists, skipping.&quot;
+        return $false
+    }
+    if ($architecture -eq &quot;32&quot;) {
+        $platform_suffix = &quot;&quot;
+    } else {
+        $platform_suffix = &quot;.amd64&quot;
+    }
+    $filepath = DownloadPython $python_version $platform_suffix
+    Write-Host &quot;Installing&quot; $filepath &quot;to&quot; $python_home
+    $args = &quot;/qn /i $filepath TARGETDIR=$python_home&quot;
+    Write-Host &quot;msiexec.exe&quot; $args
+    Start-Process -FilePath &quot;msiexec.exe&quot; -ArgumentList $args -Wait -Passthru
+    Write-Host &quot;Python $python_version ($architecture) installation complete&quot;
+    return $true
+}
+
+
+function InstallPip ($python_home) {
+    $pip_path = $python_home + &quot;/Scripts/pip.exe&quot;
+    $python_path = $python_home + &quot;/python.exe&quot;
+    if (-not(Test-Path $pip_path)) {
+        Write-Host &quot;Installing pip...&quot;
+        $webclient = New-Object System.Net.WebClient
+        $webclient.DownloadFile($GET_PIP_URL, $GET_PIP_PATH)
+        Write-Host &quot;Executing:&quot; $python_path $GET_PIP_PATH
+        Start-Process -FilePath &quot;$python_path&quot; -ArgumentList &quot;$GET_PIP_PATH&quot; -Wait -Passthru
+    } else {
+        Write-Host &quot;pip already installed.&quot;
+    }
+}
+
+function InstallPackage ($python_home, $pkg) {
+    $pip_path = $python_home + &quot;/Scripts/pip.exe&quot;
+    &amp; $pip_path install $pkg
+}
+
+function main () {
+    InstallPython $env:PYTHON_VERSION $env:PYTHON_ARCH $env:PYTHON
+    InstallPip $env:PYTHON
+    InstallPackage $env:PYTHON wheel
+}
+
+main
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Building Binary Wheels for Windows using Appveyor</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#setting-up">Setting Up</a></li>
+<li><a class="reference internal" href="#adding-appveyor-support-to-your-project">Adding Appveyor support to your project</a><ul>
+<li><a class="reference internal" href="#appveyor-yml">appveyor.yml</a></li>
+<li><a class="reference internal" href="#support-scripts">Support scripts</a></li>
+<li><a class="reference internal" href="#access-to-the-built-wheels">Access to the built wheels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#additional-notes">Additional Notes</a><ul>
+<li><a class="reference internal" href="#automatically-uploading-wheels">Automatically uploading wheels</a></li>
+<li><a class="reference internal" href="#external-dependencies">External dependencies</a></li>
+<li><a class="reference internal" href="#possible-issues">Possible issues</a></li>
+<li><a class="reference internal" href="#id1">Support scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="science.html"
+                        title="previous chapter">Installing Scientific Distributions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="os.html"
+                        title="next chapter">OS Specifics</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="os.html" title="OS Specifics"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="science.html" title="Installing Scientific Distributions"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li>
+          <li><a href="additional.html" >Advanced Topics</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

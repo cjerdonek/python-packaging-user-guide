@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tool Recommendations &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="next" title="Installation &amp; Packaging Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Python Packaging User Guide" href="index.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tutorial.html" title="Installation &amp; Packaging Tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Python Packaging User Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tool-recommendations">
+<span id="id1"></span><h1>Tool Recommendations<a class="headerlink" href="#tool-recommendations" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Complete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-04-09</td>
+</tr>
+</tbody>
+</table>
+<p>If you&#8217;re familiar with Python packaging and installation, and just want to know
+what tools are currently recommended, then here it is.</p>
+<div class="section" id="installation-tool-recommendations">
+<h2>Installation Tool Recommendations<a class="headerlink" href="#installation-tool-recommendations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use <a class="reference internal" href="projects.html#pip"><em>pip</em></a> to install Python <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a> from
+<a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>. <a class="footnote-reference" href="#id9" id="id2">[1]</a> <a class="footnote-reference" href="#id10" id="id3">[2]</a></li>
+<li>Use <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>, or <a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a> to isolate application specific
+dependencies from a shared Python installation. <a class="footnote-reference" href="#id11" id="id4">[3]</a></li>
+<li>Use <a class="reference external" href="http://pip.pypa.io/en/latest/reference/pip_wheel.html">pip wheel</a> to create a
+cache of <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheel</em></a> distributions, for the purpose of speeding up
+subsequent installations. <a class="footnote-reference" href="#id12" id="id5">[4]</a></li>
+<li>If you&#8217;re looking for management of fully integrated cross-platform software
+stacks, consider <a class="reference internal" href="projects.html#buildout"><em>buildout</em></a> (primarily focused on the web development
+community) or <a class="reference internal" href="projects.html#hashdist"><em>Hashdist</em></a>, or <a class="reference internal" href="projects.html#conda"><em>conda</em></a> (both primarily focused on
+the scientific community).</li>
+</ul>
+</div>
+<div class="section" id="packaging-tool-recommendations">
+<h2>Packaging Tool Recommendations<a class="headerlink" href="#packaging-tool-recommendations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> to define projects and create <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">Source Distributions</em></a>. <a class="footnote-reference" href="#id13" id="id6">[5]</a> <a class="footnote-reference" href="#id14" id="id7">[6]</a></li>
+<li>Use the <tt class="docutils literal"><span class="pre">bdist_wheel</span></tt> <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> extension available from the
+<a class="reference internal" href="projects.html#wheel"><em>wheel project</em></a> to create <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheels</em></a>.  This is
+especially beneficial, if your project contains binary extensions. <a class="footnote-reference" href="#id15" id="id8">[7]</a></li>
+<li>Use <a class="reference external" href="https://pypi.python.org/pypi/twine">twine</a> for uploading distributions
+to <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>.</li>
+</ul>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>There are some cases where you might choose to use <tt class="docutils literal"><span class="pre">easy_install</span></tt> (from
+<a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>), e.g. if you need to install from <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Eggs</em></a>
+(which pip doesn&#8217;t support).  For a detailed breakdown, see <a class="reference internal" href="technical.html#pip-vs-easy-install"><em>pip vs easy_install</em></a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>The acceptance of <a class="reference internal" href="peps.html#pep453s"><em>PEP453</em></a> means that <a class="reference internal" href="projects.html#pip"><em>pip</em></a> will be
+available by default in most installations of Python 3.4 or later.  See
+the <a class="reference external" href="http://www.python.org/dev/peps/pep-0453/#rationale">rationale section</a> from <a class="reference internal" href="peps.html#pep453s"><em>PEP453</em></a> as for why pip was chosen.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Beginning with Python 3.4, <tt class="docutils literal"><span class="pre">pyvenv</span></tt> will create virtualenv environments
+with <tt class="docutils literal"><span class="pre">pip</span></tt> installed, thereby making it an equal alternative to
+<a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>. However, using <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> will still be
+recommended for users that need cross-version consistency.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td>For more information, see the pip guide to <a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#installing-from-wheels">Installing from Wheels</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[5]</a></td><td><p class="first">Although you can use pure <tt class="docutils literal"><span class="pre">distutils</span></tt> for many projects, it does not
+support defining dependencies on other projects and is missing several
+convenience utilities for automatically populating distribution metadata
+correctly that are provided by <tt class="docutils literal"><span class="pre">setuptools</span></tt>. Being outside the
+standard library, <tt class="docutils literal"><span class="pre">setuptools</span></tt> also offers a more consistent feature
+set across different versions of Python, and (unlike <tt class="docutils literal"><span class="pre">distutils</span></tt>),
+<tt class="docutils literal"><span class="pre">setuptools</span></tt> will be updated to produce the upcoming &#8220;Metadata 2.0&#8221;
+standard formats on all supported versions.</p>
+<p class="last">Even for projects that do choose to use <tt class="docutils literal"><span class="pre">distutils</span></tt>, when <a class="reference internal" href="projects.html#pip"><em>pip</em></a>
+installs such projects directly from source (rather than installing
+from a prebuilt <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheel</em></a> file), it will actually build
+your project using <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> instead.</p>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[6]</a></td><td><a class="reference external" href="https://pypi.python.org/pypi/distribute">distribute</a> (a fork of setuptools) was merged back into
+<a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> in June 2013, thereby making setuptools the default
+choice for packaging.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[7]</a></td><td><a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> currently only allows
+uploading Windows and Mac OS X wheels, and they should be compatible with
+the binary installers provided for download from python.org. Enhancements
+will have to be made to the <a class="reference internal" href="peps.html#pep425s"><em>wheel compatibility tagging scheme</em></a> before linux wheels will be allowed.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tool Recommendations</a><ul>
+<li><a class="reference internal" href="#installation-tool-recommendations">Installation Tool Recommendations</a></li>
+<li><a class="reference internal" href="#packaging-tool-recommendations">Packaging Tool Recommendations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Python Packaging User Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="next chapter">Installation &amp; Packaging Tutorial</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tutorial.html" title="Installation &amp; Packaging Tutorial"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Python Packaging User Guide"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

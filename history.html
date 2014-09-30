@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Packaging History &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="PEP Summaries" href="peps.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="glossary.html" title="Glossary"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="peps.html" title="PEP Summaries"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="packaging-history">
+<span id="history"></span><h1>Packaging History<a class="headerlink" href="#packaging-history" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Complete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-04-09</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id1">
+<h2>2014<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="peps.html#pep453s"><em>PEP453</em></a>: Being able to bootstrap <tt class="docutils literal"><span class="pre">pip</span></tt> into Python
+3.4.</li>
+<li><a class="reference external" href="http://bugs.python.org/issue19407">http://bugs.python.org/issue19407</a>: Modern Installation and Packaging guides on
+python.org.</li>
+<li><a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> (v1.11) started installing pip &amp; setuptools using wheels.</li>
+<li><a class="reference internal" href="projects.html#pip"><em>pip</em></a> (v1.5.1) became available as a cross platform wheel on PyPI.</li>
+<li><a class="reference internal" href="projects.html#pip"><em>pip</em></a> (v1.5.1) stop requiring <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> to install wheels.</li>
+<li><tt class="docutils literal"><span class="pre">get-pip.py</span></tt> doesn&#8217;t require setuptools to be installed first</li>
+<li><tt class="docutils literal"><span class="pre">get-pip.py</span></tt> installs setuptools for you, if you don&#8217;t already have it</li>
+<li><a class="reference external" href="http://www.python.org/dev/peps/pep-0449">PEP449</a>: Removal of the DNS based
+mirror autodiscovery</li>
+<li><a class="reference external" href="https://github.com/pypa/pip/pull/1556">Refactored the pip docs</a> to be
+consistent with the <a class="reference external" href="https://gist.github.com/qwcode/8431828">&#8220;PyPA Standard Docs Template&#8221;</a></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>2013<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="projects.html#distlib"><em>distlib</em></a> started releasing to PyPI, and <a class="reference internal" href="projects.html#pip"><em>pip</em></a> began depending on it</li>
+<li>Core PyPI infrastructure relocated to OSU/OSL (with significantly
+increased resources)</li>
+<li>The core packaging projects were collected under the <a class="reference internal" href="glossary.html#term-python-packaging-authority-pypa"><em class="xref std std-term">Python Packaging Authority
+(PyPA)</em></a> accounts on <a class="reference external" href="https://github.com/pypa">GitHub</a> and <a class="reference external" href="https://bitbucket.org/pypa/">Bitbucket</a> <a class="footnote-reference" href="#id10" id="id3">[2]</a></li>
+<li>Distribute merged back into <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>, and <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> development
+migrated to the PyPA BitBucket account. <a class="footnote-reference" href="#id9" id="id4">[1]</a> <a class="footnote-reference" href="#id13" id="id5">[5]</a></li>
+<li>PyPI supports clients using verified SSL with standard cert bundles</li>
+<li>PyPI forces web users over to SSL</li>
+<li><a class="reference internal" href="projects.html#pip"><em>pip</em></a> (v1.3) and <a class="reference internal" href="projects.html#setuptools"><em>easy_install</em></a> (v0.7) use verified SSL by default</li>
+<li>easy_install supports additional hashes beyond md5 (pip already did)</li>
+<li>Fastly CDN enabled for PyPI (donated)</li>
+<li>Restructured the <a class="reference external" href="http://pip.pypa.io/en/latest/installing.html">pip install docs</a> to clarify that
+setuptools and pip are the &#8220;base&#8221; of the bootstrapping hierarchy</li>
+<li>setuptools available as a cross platform wheel on PyPI</li>
+<li><a class="reference internal" href="peps.html#pep438s"><em>PEP438 Transitioning to release-file hosting on PyPI</em></a> and the associated pip changes.</li>
+<li><a class="reference internal" href="projects.html#pip"><em>pip</em></a> (v1.4) added support for building and installing <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheels</em></a></li>
+<li><a class="reference internal" href="glossary.html#term-python-packaging-authority-pypa"><em class="xref std std-term">PyPA</em></a> became the maintainer for the
+<a class="reference external" href="https://python-packaging-user-guide.readthedocs.org/en/latest/">Python Packaging User Guide</a>, which was forked from the &#8220;Hitchhiker&#8217;s Guide
+to Packaging&#8221;.</li>
+<li>Packaging Dev and User Summits were held at Pycon 2013 to share ideas on the
+future of packaging. <a class="footnote-reference" href="#id11" id="id6">[3]</a> <a class="footnote-reference" href="#id12" id="id7">[4]</a></li>
+<li><a class="reference internal" href="peps.html#pep425s"><em>PEP425</em></a> and <a class="reference internal" href="peps.html#pep427s"><em>PEP427</em></a> were accepted.  Together,
+they specify a built-package format for Python called <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a>.</li>
+</ul>
+</div>
+<div class="section" id="before-2013">
+<h2>Before 2013<a class="headerlink" href="#before-2013" title="Permalink to this headline">¶</a></h2>
+<p><strong>2012-06-19</strong>: The effort to include &#8220;Distutils2/Packaging&#8221; in Python 3.3 was
+abandoned due lack of involvement. <a class="footnote-reference" href="#id14" id="id8">[6]</a></p>
+<p><strong>2011-02-28</strong>: The <a class="reference internal" href="glossary.html#term-python-packaging-authority-pypa"><em class="xref std std-term">PyPA</em></a> is created
+to take over the maintenance of <a class="reference internal" href="projects.html#pip"><em>pip</em></a> and <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> from Ian Bicking,
+led by Carl Meyer, Brian Rosner and Jannis Leidel. Other proposed names were
+&#8220;ianb-ng&#8221;, &#8220;cabal&#8221;, &#8220;pack&#8221; and &#8220;Ministry of Installation&#8221;.</p>
+<p><strong>2008</strong>: <a class="reference external" href="https://pypi.python.org/pypi/distribute">distribute</a> was forked from <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> by Tarek Ziade, in an
+effort to create a more open project.</p>
+<p><strong>2008</strong>: <a class="reference internal" href="projects.html#pip"><em>pip</em></a> was introduced by Ian Bicking as an alternative to
+<tt class="docutils literal"><span class="pre">easy_install</span></tt> (the installer included with <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>)</p>
+<p><strong>2007</strong>: <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> was introduced by Ian Bicking, which allowed users
+to create isolated Python environments based on a central system installation of
+Python.</p>
+<p><strong>2006</strong>: <a class="reference internal" href="projects.html#buildout"><em>buildout</em></a> was introduced by Jim Fulton, with the goal to create
+a system for repeatable installations of potentially complex projects.</p>
+<p><strong>2004</strong>: <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> was introduced by Phillip Eby, which included the
+<a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Egg</em></a> format, and the ability to declare and automatically install
+dependencies.</p>
+<p><strong>2003</strong>: <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> was up and running.</p>
+<p><strong>2002</strong>: Richard Jones started work on <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>, and created <a class="reference external" href="http://www.python.org/dev/peps/pep-0301">PEP301</a> to describe it.</p>
+<p><strong>2001</strong>: <a class="reference external" href="http://www.python.org/dev/peps/pep-0241">PEP241</a> was written to standardize the metadata for distributions.</p>
+<p><strong>2000</strong>: <a class="reference external" href="https://mail.python.org/mailman/listinfo/catalog-sig">catalog-sig</a> was created to discuss creating a centralized index of
+distributions.</p>
+<p><strong>2000</strong>: <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a> was added to the Python standard library in Python 1.6.</p>
+<p><strong>1998</strong>: The <a class="reference external" href="http://www.python.org/community/sigs/current/distutils-sig/">distutils-sig</a> dicussion list was created to discuss the
+development of <a class="reference internal" href="projects.html#distutils"><em>distutils</em></a>.</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[1]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/distutils-sig/2013-June/021160.html">http://mail.python.org/pipermail/distutils-sig/2013-June/021160.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/distutils-sig/2013-March/020224.html">http://mail.python.org/pipermail/distutils-sig/2013-March/020224.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td><a class="reference external" href="https://us.pycon.org/2013/community/openspaces/packaginganddistributionminisummit/">https://us.pycon.org/2013/community/openspaces/packaginganddistributionminisummit/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="http://www.pyvideo.org/video/1731/panel-directions-for-packaging">http://www.pyvideo.org/video/1731/panel-directions-for-packaging</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/distutils-sig/2013-March/020127.html">http://mail.python.org/pipermail/distutils-sig/2013-March/020127.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[6]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/python-dev/2012-June/120430.html">http://mail.python.org/pipermail/python-dev/2012-June/120430.html</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Packaging History</a><ul>
+<li><a class="reference internal" href="#id1">2014</a></li>
+<li><a class="reference internal" href="#id2">2013</a></li>
+<li><a class="reference internal" href="#before-2013">Before 2013</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="peps.html"
+                        title="previous chapter">PEP Summaries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="glossary.html"
+                        title="next chapter">Glossary</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="glossary.html" title="Glossary"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="peps.html" title="PEP Summaries"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
