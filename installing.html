@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial on Installing Distributions &mdash; Python Packaging User Guide  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python Packaging User Guide  documentation" href="index.html" />
+    <link rel="next" title="Tutorial on Packaging and Distributing Projects" href="distributing.html" />
+    <link rel="prev" title="Tool Recommendations" href="current.html" />
+<link rel="stylesheet" href="_static/pug.css" type="text/css" />
+ 
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="distributing.html" title="Tutorial on Packaging and Distributing Projects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="current.html" title="Tool Recommendations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tutorial-on-installing-distributions">
+<h1><a class="toc-backref" href="#id11">Tutorial on Installing Distributions</a><a class="headerlink" href="#tutorial-on-installing-distributions" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Page Status:</th><td class="field-body">Complete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Last Reviewed:</th><td class="field-body">2014-09-30</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#tutorial-on-installing-distributions" id="id11">Tutorial on Installing Distributions</a><ul>
+<li><a class="reference internal" href="#setup-for-installing-packages" id="id12">Setup for Installing Packages</a></li>
+<li><a class="reference internal" href="#virtual-environments" id="id13">Virtual Environments</a></li>
+<li><a class="reference internal" href="#installing-python-distributions" id="id14">Installing Python Distributions</a><ul>
+<li><a class="reference internal" href="#examples" id="id15">Examples</a></li>
+<li><a class="reference internal" href="#wheels" id="id16">Wheels</a></li>
+<li><a class="reference internal" href="#user-installs" id="id17">User Installs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This tutorial covers the basics of how to install Python <a class="reference internal" href="glossary.html#term-package-meaning-2"><em class="xref std std-term">packages</em></a>, which are known more formally as
+<a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a>.</p>
+<div class="section" id="setup-for-installing-packages">
+<span id="installing-setup"></span><h2><a class="toc-backref" href="#id12">Setup for Installing Packages</a><a class="headerlink" href="#setup-for-installing-packages" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the steps to follow before installing other
+Python packages.  You will want to install <a class="reference internal" href="projects.html#pip"><em>pip</em></a> and
+<a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>, and in most cases, <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> (unless you&#8217;re using
+<a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a>).</p>
+<p>We recommend the following installation sequence:</p>
+<ol class="arabic">
+<li><p class="first">Install <a class="reference internal" href="projects.html#pip"><em>pip</em></a> and <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>: <a class="footnote-reference" href="#id8" id="id1">[3]</a></p>
+<p>If you have a <a class="reference internal" href="peps.html#pep453s"><em>PEP453</em></a>-compliant Python 3.4, it may already
+have the <tt class="docutils literal"><span class="pre">pip</span></tt> command available by default (and setuptools will be
+installed as well), or it may at least contain a working <a class="reference external" href="https://docs.python.org/3.4/library/ensurepip.html">ensurepip</a>. To install pip (and
+setuptools) using ensurepip, run: <tt class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ensurepip</span> <span class="pre">--upgrade</span></tt>.</p>
+<p>Otherwise:</p>
+<ul class="simple">
+<li>Securely Download <a class="reference external" href="https://raw.github.com/pypa/pip/master/contrib/get-pip.py">get-pip.py</a> <a class="footnote-reference" href="#id6" id="id2">[1]</a></li>
+<li>Run <tt class="docutils literal"><span class="pre">python</span> <span class="pre">get-pip.py</span></tt>.  This will install or upgrade pip.
+Additionally, it will install setuptools if it&#8217;s not installed already. To
+upgrade an existing setuptools, run <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">setuptools</span></tt> <a class="footnote-reference" href="#id7" id="id3">[2]</a></li>
+</ul>
+</li>
+<li><p class="first">Optionally, Create a virtual environment (See <a class="reference internal" href="#creating-and-using-virtual-environments"><em>section below</em></a> for details):</p>
+<p>Using <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install virtualenv
+virtualenv &lt;DIR&gt;
+source &lt;DIR&gt;/bin/activate
+</pre></div>
+</div>
+<p>Using <a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a>: <a class="footnote-reference" href="#id10" id="id4">[5]</a></p>
+<div class="highlight-python"><div class="highlight"><pre>pyvenv &lt;DIR&gt;
+source &lt;DIR&gt;/bin/activate
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="virtual-environments">
+<span id="creating-and-using-virtual-environments"></span><h2><a class="toc-backref" href="#id13">Virtual Environments</a><a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h2>
+<p>Python &#8220;Virtual Environments&#8221; allow Python <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a>
+to be installed in an isolated location for a particular application, rather
+than being installed globally.</p>
+<p>Imagine you have an application that needs version 1 of LibFoo, but another
+application requires version 2. How can you use both these applications? If you
+install everything into /usr/lib/python2.7/site-packages (or whatever your
+platform’s standard location is), it’s easy to end up in a situation where you
+unintentionally upgrade an application that shouldn’t be upgraded.</p>
+<p>Or more generally, what if you want to install an application and leave it be?
+If an application works, any change in its libraries or the versions of those
+libraries can break the application.</p>
+<p>Also, what if you can’t install <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a> into the
+global site-packages directory? For instance, on a shared host.</p>
+<p>In all these cases, virtual environments can help you. They have their own
+installation directories and they don’t share libraries with other virtual
+environments.</p>
+<p>Currently, there are two viable tools for creating Python virtual environments:
+<a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> and <a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a>. <a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a> is only available in Python 3.3 &amp;
+3.4, and only in Python 3.4, is <a class="reference internal" href="projects.html#pip"><em>pip</em></a> &amp; <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> installed into
+environments by default, whereas <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> supports Python 2.6 thru
+Python 3.4 and <a class="reference internal" href="projects.html#pip"><em>pip</em></a> &amp; <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> are installed by default in every
+version.</p>
+<p>The basic usage is like so:</p>
+<p>Using <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>virtualenv &lt;DIR&gt;
+source &lt;DIR&gt;/bin/activate
+</pre></div>
+</div>
+<p>Using <a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>pyvenv &lt;DIR&gt;
+source &lt;DIR&gt;/bin/activate
+</pre></div>
+</div>
+<p>For more information, see the <a class="reference external" href="http://virtualenv.pypa.io">virtualenv</a> docs or
+the <a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a> docs.</p>
+</div>
+<div class="section" id="installing-python-distributions">
+<h2><a class="toc-backref" href="#id14">Installing Python Distributions</a><a class="headerlink" href="#installing-python-distributions" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="projects.html#pip"><em>pip</em></a> is the recommended installer, and supports various requirement forms
+and options.  For details, see the <a class="reference external" href="https://pip.pypa.io">pip docs</a>.</p>
+<div class="section" id="examples">
+<h3><a class="toc-backref" href="#id15">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>Install <cite>SomeProject</cite> and its dependencies from <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> using <a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_install.html#requirement-specifiers" title="(in pip v1.5)"><em>Requirement Specifiers</em></a></p>
+<div class="highlight-python"><div class="highlight"><pre>pip install SomeProject           # latest version
+pip install SomeProject==1.0.4    # specific version
+pip install &#39;SomeProject&gt;=1.0.4&#39;  # minimum version
+</pre></div>
+</div>
+<p>Install a list of requirements specified in a <a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#requirements-files" title="(in pip v1.5)"><em class="xref std std-ref">Requirements File</em></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install -r requirements.txt
+</pre></div>
+</div>
+<p>Upgrade an already installed <cite>SomeProject</cite> to the latest from PyPI.</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --upgrade SomeProject
+</pre></div>
+</div>
+<p>Install a project from VCS in &#8220;editable&#8221; mode.  For a full breakdown of the
+syntax, see pip&#8217;s section on <a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_install.html#vcs-support" title="(in pip v1.5)"><em class="xref std std-ref">VCS Support</em></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install -e git+https://git.repo/some_pkg.git#egg=SomeProject          # from git
+pip install -e hg+https://hg.repo/some_pkg.git#egg=SomeProject            # from mercurial
+pip install -e svn+svn://svn.repo/some_pkg/trunk/#egg=SomeProject         # from svn
+pip install -e git+https://git.repo/some_pkg.git@feature#egg=SomeProject  # from a branch
+</pre></div>
+</div>
+<p>Install a particular source archive file.</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install ./downloads/SomeProject-1.0.4.tar.gz
+pip install http://my.package.repo/SomeProject-1.0.4.zip
+</pre></div>
+</div>
+<p>Install from an alternate index</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --index-url http://my.package.repo/simple/ SomeProject
+</pre></div>
+</div>
+<p>Search an additional index during install, in addition to <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a></p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --extra-index-url http://my.package.repo/simple SomeProject
+</pre></div>
+</div>
+<p>Install from a local directory containing archives (and don&#8217;t check <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>)</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --no-index --find-links=file:///local/dir/ SomeProject
+pip install --no-index --find-links=/local/dir/ SomeProject
+pip install --no-index --find-links=relative/dir/ SomeProject
+</pre></div>
+</div>
+<p>Find pre-release and development versions, in addition to stable versions.  By
+default, pip only finds stable versions.</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --pre SomeProject
+</pre></div>
+</div>
+</div>
+<div class="section" id="wheels">
+<h3><a class="toc-backref" href="#id16">Wheels</a><a class="headerlink" href="#wheels" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> is a pre-built <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distribution</em></a> format that
+provides faster installation compared to <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">Source Distributions (sdist)</em></a>, especially when a project contains compiled
+extensions.</p>
+<p>As of v1.5, <a class="reference internal" href="projects.html#pip"><em>pip</em></a> prefers <a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">wheels</em></a> over <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">sdists</em></a> when searching indexes.</p>
+<p>Although wheels are <a class="reference external" href="http://pythonwheels.com">becoming more common</a> on
+<a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>, if you want all of your dependencies
+converted to wheel, do the following (assuming you&#8217;re using a <a class="reference external" href="https://pip.pypa.io/en/latest/user_guide.html#requirements-files" title="(in pip v1.5)"><em class="xref std std-ref">Requirements
+File</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre>pip wheel --wheel-dir=/local/wheels -r requirements.txt
+</pre></div>
+</div>
+<p>And then to install those requirements just using your local directory of wheels
+(and not from PyPI):</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --no-index --find-links=/local/wheels -r requirements.txt
+</pre></div>
+</div>
+<p><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> is intended to replace <a class="reference internal" href="glossary.html#term-egg"><em class="xref std std-term">Eggs</em></a>.  For a detailed
+comparison, see <a class="reference internal" href="technical.html#wheel-vs-egg"><em>Wheel vs Egg</em></a>.</p>
+</div>
+<div class="section" id="user-installs">
+<h3><a class="toc-backref" href="#id17">User Installs</a><a class="headerlink" href="#user-installs" title="Permalink to this headline">¶</a></h3>
+<p>To install <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a> that are isolated to the current
+user, use the <tt class="docutils literal"><span class="pre">-user</span></tt> flag:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user SomeProject
+</pre></div>
+</div>
+<p>For more information see the <a class="reference external" href="https://pip.readthedocs.org/en/latest/user_guide.html#user-installs">User Installs</a> section
+from the pip docs.</p>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>&#8220;Secure&#8221; in this context means using a modern browser or a
+tool like <cite>curl</cite> that verifies SSL certificates when downloading from
+https URLs.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Depending on your platform, this may require root or Administrator
+access. <a class="reference internal" href="projects.html#pip"><em>pip</em></a> is currently considering changing this by <a class="reference external" href="https://github.com/pypa/pip/issues/1668">making user
+installs the default behavior</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[3]</a></td><td>On Linux and OSX, pip and setuptools will usually be available for the system
+python from a system package manager (e.g. <cite>yum</cite> or <cite>apt-get</cite> for linux,
+or <cite>homebrew</cite> for OSX). Unfortunately, there is often delay in getting
+the latest version this way, so in most cases, you&#8217;ll want to use these
+instructions.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td>For more information on creating projects, see the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html">Setuptools Docs</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[5]</a></td><td>Beginning with Python 3.4, <tt class="docutils literal"><span class="pre">pyvenv</span></tt> (a stdlib alternative to
+<a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>) will create virtualenv environments with <tt class="docutils literal"><span class="pre">pip</span></tt>
+pre-installed, thereby making it an equal alternative to
+<a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial on Installing Distributions</a><ul>
+<li><a class="reference internal" href="#setup-for-installing-packages">Setup for Installing Packages</a></li>
+<li><a class="reference internal" href="#virtual-environments">Virtual Environments</a></li>
+<li><a class="reference internal" href="#installing-python-distributions">Installing Python Distributions</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#wheels">Wheels</a></li>
+<li><a class="reference internal" href="#user-installs">User Installs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="current.html"
+                        title="previous chapter">Tool Recommendations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="distributing.html"
+                        title="next chapter">Tutorial on Packaging and Distributing Projects</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="distributing.html" title="Tutorial on Packaging and Distributing Projects"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="current.html" title="Tool Recommendations"
+             >previous</a> |</li>
+        <li><a href="index.html">Python Packaging User Guide  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, PyPA.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
