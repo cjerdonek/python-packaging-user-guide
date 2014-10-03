@@ -5,7 +5,8 @@ Tutorial on Installing Distributions
 :Page Status: Complete
 :Last Reviewed: 2014-09-30
 
-.. contents::
+.. contents:: Contents
+   :local:
 
 This tutorial covers the basics of how to install Python :term:`packages
 <Package (Meaning #2)>`, which are known more formally as
@@ -14,8 +15,8 @@ This tutorial covers the basics of how to install Python :term:`packages
 
 .. _installing_setup:
 
-Setup for Installing Packages
-=============================
+Setup for Installing Distributions
+==================================
 
 This section describes the steps to follow before installing other
 Python packages.  You will want to install :ref:`pip` and

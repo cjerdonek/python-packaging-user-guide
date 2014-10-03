@@ -53,7 +53,7 @@
           <div class="body">
             
   <div class="section" id="tutorial-on-installing-distributions">
-<h1><a class="toc-backref" href="#id11">Tutorial on Installing Distributions</a><a class="headerlink" href="#tutorial-on-installing-distributions" title="Permalink to this headline">¶</a></h1>
+<h1>Tutorial on Installing Distributions<a class="headerlink" href="#tutorial-on-installing-distributions" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -64,26 +64,23 @@
 </tr>
 </tbody>
 </table>
-<div class="contents topic" id="contents">
+<div class="contents local topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#tutorial-on-installing-distributions" id="id11">Tutorial on Installing Distributions</a><ul>
-<li><a class="reference internal" href="#setup-for-installing-packages" id="id12">Setup for Installing Packages</a></li>
-<li><a class="reference internal" href="#virtual-environments" id="id13">Virtual Environments</a></li>
-<li><a class="reference internal" href="#installing-python-distributions" id="id14">Installing Python Distributions</a><ul>
-<li><a class="reference internal" href="#examples" id="id15">Examples</a></li>
-<li><a class="reference internal" href="#wheels" id="id16">Wheels</a></li>
-<li><a class="reference internal" href="#user-installs" id="id17">User Installs</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#setup-for-installing-distributions" id="id11">Setup for Installing Distributions</a></li>
+<li><a class="reference internal" href="#virtual-environments" id="id12">Virtual Environments</a></li>
+<li><a class="reference internal" href="#installing-python-distributions" id="id13">Installing Python Distributions</a><ul>
+<li><a class="reference internal" href="#examples" id="id14">Examples</a></li>
+<li><a class="reference internal" href="#wheels" id="id15">Wheels</a></li>
+<li><a class="reference internal" href="#user-installs" id="id16">User Installs</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <p>This tutorial covers the basics of how to install Python <a class="reference internal" href="glossary.html#term-package-meaning-2"><em class="xref std std-term">packages</em></a>, which are known more formally as
 <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a>.</p>
-<div class="section" id="setup-for-installing-packages">
-<span id="installing-setup"></span><h2><a class="toc-backref" href="#id12">Setup for Installing Packages</a><a class="headerlink" href="#setup-for-installing-packages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup-for-installing-distributions">
+<span id="installing-setup"></span><h2><a class="toc-backref" href="#id11">Setup for Installing Distributions</a><a class="headerlink" href="#setup-for-installing-distributions" title="Permalink to this headline">¶</a></h2>
 <p>This section describes the steps to follow before installing other
 Python packages.  You will want to install <a class="reference internal" href="projects.html#pip"><em>pip</em></a> and
 <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a>, and in most cases, <a class="reference internal" href="projects.html#virtualenv"><em>virtualenv</em></a> (unless you&#8217;re using
@@ -119,7 +116,7 @@ source &lt;DIR&gt;/bin/activate
 </ol>
 </div>
 <div class="section" id="virtual-environments">
-<span id="creating-and-using-virtual-environments"></span><h2><a class="toc-backref" href="#id13">Virtual Environments</a><a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h2>
+<span id="creating-and-using-virtual-environments"></span><h2><a class="toc-backref" href="#id12">Virtual Environments</a><a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h2>
 <p>Python &#8220;Virtual Environments&#8221; allow Python <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a>
 to be installed in an isolated location for a particular application, rather
 than being installed globally.</p>
@@ -157,11 +154,11 @@ source &lt;DIR&gt;/bin/activate
 the <a class="reference external" href="http://docs.python.org/3.4/library/venv.html">pyvenv</a> docs.</p>
 </div>
 <div class="section" id="installing-python-distributions">
-<h2><a class="toc-backref" href="#id14">Installing Python Distributions</a><a class="headerlink" href="#installing-python-distributions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Installing Python Distributions</a><a class="headerlink" href="#installing-python-distributions" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="projects.html#pip"><em>pip</em></a> is the recommended installer, and supports various requirement forms
 and options.  For details, see the <a class="reference external" href="https://pip.pypa.io">pip docs</a>.</p>
 <div class="section" id="examples">
-<h3><a class="toc-backref" href="#id15">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p>Install <cite>SomeProject</cite> and its dependencies from <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> using <a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_install.html#requirement-specifiers" title="(in pip v1.5)"><em>Requirement Specifiers</em></a></p>
 <div class="highlight-python"><div class="highlight"><pre>pip install SomeProject           # latest version
 pip install SomeProject==1.0.4    # specific version
@@ -210,7 +207,7 @@ default, pip only finds stable versions.</p>
 </div>
 </div>
 <div class="section" id="wheels">
-<h3><a class="toc-backref" href="#id16">Wheels</a><a class="headerlink" href="#wheels" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Wheels</a><a class="headerlink" href="#wheels" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="glossary.html#term-wheel"><em class="xref std std-term">Wheel</em></a> is a pre-built <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distribution</em></a> format that
 provides faster installation compared to <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">Source Distributions (sdist)</em></a>, especially when a project contains compiled
 extensions.</p>
@@ -231,7 +228,7 @@ File</em></a>):</p>
 comparison, see <a class="reference internal" href="technical.html#wheel-vs-egg"><em>Wheel vs Egg</em></a>.</p>
 </div>
 <div class="section" id="user-installs">
-<h3><a class="toc-backref" href="#id17">User Installs</a><a class="headerlink" href="#user-installs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">User Installs</a><a class="headerlink" href="#user-installs" title="Permalink to this headline">¶</a></h3>
 <p>To install <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">distributions</em></a> that are isolated to the current
 user, use the <tt class="docutils literal"><span class="pre">-user</span></tt> flag:</p>
 <div class="highlight-python"><div class="highlight"><pre>pip install --user SomeProject
@@ -294,7 +291,7 @@ pre-installed, thereby making it an equal alternative to
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Tutorial on Installing Distributions</a><ul>
-<li><a class="reference internal" href="#setup-for-installing-packages">Setup for Installing Packages</a></li>
+<li><a class="reference internal" href="#setup-for-installing-distributions">Setup for Installing Distributions</a></li>
 <li><a class="reference internal" href="#virtual-environments">Virtual Environments</a></li>
 <li><a class="reference internal" href="#installing-python-distributions">Installing Python Distributions</a><ul>
 <li><a class="reference internal" href="#examples">Examples</a></li>

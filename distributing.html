@@ -53,7 +53,7 @@
           <div class="body">
             
   <div class="section" id="tutorial-on-packaging-and-distributing-projects">
-<h1><a class="toc-backref" href="#id22">Tutorial on Packaging and Distributing Projects</a><a class="headerlink" href="#tutorial-on-packaging-and-distributing-projects" title="Permalink to this headline">¶</a></h1>
+<h1>Tutorial on Packaging and Distributing Projects<a class="headerlink" href="#tutorial-on-packaging-and-distributing-projects" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -64,41 +64,38 @@
 </tr>
 </tbody>
 </table>
-<div class="contents topic" id="contents">
+<div class="contents local topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#tutorial-on-packaging-and-distributing-projects" id="id22">Tutorial on Packaging and Distributing Projects</a><ul>
-<li><a class="reference internal" href="#setup-for-project-distributors" id="id23">Setup for Project Distributors</a></li>
-<li><a class="reference internal" href="#creating-your-own-project" id="id24">Creating your own Project</a><ul>
-<li><a class="reference internal" href="#layout" id="id25">Layout</a></li>
-<li><a class="reference internal" href="#name" id="id26">Name</a></li>
-<li><a class="reference internal" href="#version" id="id27">Version</a></li>
-<li><a class="reference internal" href="#packages" id="id28">Packages</a></li>
-<li><a class="reference internal" href="#metadata" id="id29">Metadata</a></li>
-<li><a class="reference internal" href="#dependencies" id="id30">Dependencies</a></li>
-<li><a class="reference internal" href="#package-data" id="id31">Package Data</a></li>
-<li><a class="reference internal" href="#data-files" id="id32">Data Files</a></li>
-<li><a class="reference internal" href="#scripts" id="id33">Scripts</a></li>
-<li><a class="reference internal" href="#id17" id="id34">MANIFEST.in</a></li>
+<li><a class="reference internal" href="#setup-for-project-distributors" id="id22">Setup for Project Distributors</a></li>
+<li><a class="reference internal" href="#creating-your-own-project" id="id23">Creating your own Project</a><ul>
+<li><a class="reference internal" href="#layout" id="id24">Layout</a></li>
+<li><a class="reference internal" href="#name" id="id25">Name</a></li>
+<li><a class="reference internal" href="#version" id="id26">Version</a></li>
+<li><a class="reference internal" href="#packages" id="id27">Packages</a></li>
+<li><a class="reference internal" href="#metadata" id="id28">Metadata</a></li>
+<li><a class="reference internal" href="#dependencies" id="id29">Dependencies</a></li>
+<li><a class="reference internal" href="#package-data" id="id30">Package Data</a></li>
+<li><a class="reference internal" href="#data-files" id="id31">Data Files</a></li>
+<li><a class="reference internal" href="#scripts" id="id32">Scripts</a></li>
+<li><a class="reference internal" href="#id17" id="id33">MANIFEST.in</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#developing-your-project" id="id35">Developing your project</a></li>
-<li><a class="reference internal" href="#packaging-your-project" id="id36">Packaging your Project</a><ul>
-<li><a class="reference internal" href="#source-distributions" id="id37">Source Distributions</a></li>
-<li><a class="reference internal" href="#universal-wheels" id="id38">Universal Wheels</a></li>
-<li><a class="reference internal" href="#platform-wheels" id="id39">Platform Wheels</a></li>
+<li><a class="reference internal" href="#developing-your-project" id="id34">Developing your project</a></li>
+<li><a class="reference internal" href="#packaging-your-project" id="id35">Packaging your Project</a><ul>
+<li><a class="reference internal" href="#source-distributions" id="id36">Source Distributions</a></li>
+<li><a class="reference internal" href="#universal-wheels" id="id37">Universal Wheels</a></li>
+<li><a class="reference internal" href="#platform-wheels" id="id38">Platform Wheels</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#uploading-your-project-to-pypi" id="id40">Uploading your Project to PyPI</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#uploading-your-project-to-pypi" id="id39">Uploading your Project to PyPI</a></li>
 </ul>
 </div>
 <p>This tutorial covers the basics of how to create and distribute your
 own Python projects.  This tutorial assumes that you are already familiar
-with the contents of the <a class="reference internal" href="tutorial.html"><em>Tutorial on Installing Packages</em></a>.</p>
+with the contents of the <a class="reference internal" href="installing.html"><em>Tutorial on Installing Distributions</em></a>.</p>
 <div class="section" id="setup-for-project-distributors">
-<h2><a class="toc-backref" href="#id23">Setup for Project Distributors</a><a class="headerlink" href="#setup-for-project-distributors" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id22">Setup for Project Distributors</a><a class="headerlink" href="#setup-for-project-distributors" title="Permalink to this headline">¶</a></h2>
 <p>This section describes steps to follow before distributing your own
 Python packages.</p>
 <p>First, make sure you have already followed the <a class="reference internal" href="installing.html#installing-setup"><em>setup steps for
@@ -113,11 +110,11 @@ installing packages</em></a>.</p>
 </ol>
 </div>
 <div class="section" id="creating-your-own-project">
-<h2><a class="toc-backref" href="#id24">Creating your own Project</a><a class="headerlink" href="#creating-your-own-project" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id23">Creating your own Project</a><a class="headerlink" href="#creating-your-own-project" title="Permalink to this headline">¶</a></h2>
 <p>In the sections below, we&#8217;ll reference the <a class="reference external" href="https://github.com/pypa/sampleproject">PyPA sample project</a>. which exists as a companion to this
 tutorial.</p>
 <div class="section" id="layout">
-<h3><a class="toc-backref" href="#id25">Layout</a><a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">Layout</a><a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h3>
 <p>The critical requirement for creating projects using <a class="reference internal" href="projects.html#setuptools"><em>setuptools</em></a> is to
 have a <tt class="docutils literal"><span class="pre">setup.py</span></tt>. For an example, see <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a>.  We&#8217;ll cover the
 components of <tt class="docutils literal"><span class="pre">setup.py</span></tt> in the sections below.</p>
@@ -136,7 +133,7 @@ packaged.</li>
 </ul>
 </div>
 <div class="section" id="name">
-<h3><a class="toc-backref" href="#id26">Name</a><a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id25">Name</a><a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h3>
 <p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;sample&#39;</span>
 </pre></div>
@@ -144,7 +141,7 @@ packaged.</li>
 <p>This will determine how your project is listed on <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>. For details on permitted characters, see the <a class="reference external" href="http://legacy.python.org/dev/peps/pep-0426/#name">name</a> section from <a class="reference internal" href="peps.html#pep426s"><em>PEP426</em></a>.</p>
 </div>
 <div class="section" id="version">
-<h3><a class="toc-backref" href="#id27">Version</a><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">Version</a><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
 <p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">version</span> <span class="o">=</span> <span class="s">&#39;1.2.0&#39;</span>
 </pre></div>
@@ -165,7 +162,7 @@ not duplicate the value, there are a few ways to manage this. See the
 &#8220;<a class="reference internal" href="development.html#single-sourcing-the-version"><em>Single-sourcing the version across setup.py and your project</em></a>&#8221; Advanced Topics section.</p>
 </div>
 <div class="section" id="packages">
-<h3><a class="toc-backref" href="#id28">Packages</a><a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id27">Packages</a><a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
 <p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;contrib&#39;</span><span class="p">,</span> <span class="s">&#39;docs&#39;</span><span class="p">,</span> <span class="s">&#39;tests*&#39;</span><span class="p">]),</span>
 </pre></div>
@@ -177,7 +174,7 @@ keyword argument to omit packages that are not intended to be released and
 installed.</p>
 </div>
 <div class="section" id="metadata">
-<h3><a class="toc-backref" href="#id29">Metadata</a><a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id28">Metadata</a><a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s important to include various metadata about your project.</p>
 <p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># A description of your project</span>
@@ -226,7 +223,7 @@ installed.</p>
 </div>
 </div>
 <div class="section" id="dependencies">
-<h3><a class="toc-backref" href="#id30">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id29">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
 <p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">install_requires</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;peppercorn&#39;</span><span class="p">]</span>
 </pre></div>
@@ -237,7 +234,7 @@ specification that is used to install its dependencies.</p>
 <p>For more on using &#8220;install_requires&#8221; see <a class="reference internal" href="technical.html#install-requires-vs-requirements-files"><em>install_requires vs Requirements files</em></a>.</p>
 </div>
 <div class="section" id="package-data">
-<span id="id9"></span><h3><a class="toc-backref" href="#id31">Package Data</a><a class="headerlink" href="#package-data" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3><a class="toc-backref" href="#id30">Package Data</a><a class="headerlink" href="#package-data" title="Permalink to this headline">¶</a></h3>
 <p>Often, additional files need to be installed into a <a class="reference internal" href="glossary.html#term-package-meaning-1"><em class="xref std std-term">package</em></a>. These files are often data that’s closely related to the
 package’s implementation, or text files containing documentation that might be
 of interest to programmers using the package. These files are called &#8220;package
@@ -255,7 +252,7 @@ the directory containing the package.</p>
 the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html">setuptools docs</a>.</p>
 </div>
 <div class="section" id="data-files">
-<span id="id11"></span><h3><a class="toc-backref" href="#id32">Data Files</a><a class="headerlink" href="#data-files" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3><a class="toc-backref" href="#id31">Data Files</a><a class="headerlink" href="#data-files" title="Permalink to this headline">¶</a></h3>
 <p>Although configuring <a class="reference internal" href="#package-data"><em>Package Data</em></a> is sufficient for most needs, in some
 cases you may need to place data files <em>outside</em> of your <a class="reference internal" href="glossary.html#term-package-meaning-1"><em class="xref std std-term">packages</em></a>.  The <tt class="docutils literal"><span class="pre">data_files</span></tt> directive allows you to do that.</p>
 <p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
@@ -278,7 +275,7 @@ installed relative to &#8220;site-packages&#8221;.  For discussion see <a class=
 </div>
 </div>
 <div class="section" id="scripts">
-<h3><a class="toc-backref" href="#id33">Scripts</a><a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id32">Scripts</a><a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h3>
 <p>from <a class="reference external" href="https://github.com/pypa/sampleproject/blob/master/setup.py">sampleproject/setup.py</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
     <span class="s">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
@@ -297,7 +294,7 @@ generated during the install of your <a class="reference internal" href="glossar
 from the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html">setuptools docs</a>.</p>
 </div>
 <div class="section" id="id17">
-<h3><a class="toc-backref" href="#id34">MANIFEST.in</a><a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id33">MANIFEST.in</a><a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>A <tt class="docutils literal"><span class="pre">MANIFEST.in</span></tt> file is needed in certain cases where you need to package
 additional files that <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">(or</span> <span class="pre">bdist_wheel)</span></tt> don&#8217;t
 automatically include.</p>
@@ -309,7 +306,7 @@ section from the <a class="reference internal" href="projects.html#distutils"><e
 </div>
 </div>
 <div class="section" id="developing-your-project">
-<h2><a class="toc-backref" href="#id35">Developing your project</a><a class="headerlink" href="#developing-your-project" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id34">Developing your project</a><a class="headerlink" href="#developing-your-project" title="Permalink to this headline">¶</a></h2>
 <p>Although not required, it&#8217;s common to locally install your project in &#8220;develop&#8221;
 or &#8220;editable&#8221; mode, while you&#8217;re working on it.  This allows the project to be
 both installed and editable in project form.</p>
@@ -322,11 +319,11 @@ pip install -e .           # the pip way (which just calls &quot;setup.py develo
 of the <a class="reference external" href="http://pythonhosted.org/setuptools/setuptools.html">setuptools docs</a>.</p>
 </div>
 <div class="section" id="packaging-your-project">
-<h2><a class="toc-backref" href="#id36">Packaging your Project</a><a class="headerlink" href="#packaging-your-project" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id35">Packaging your Project</a><a class="headerlink" href="#packaging-your-project" title="Permalink to this headline">¶</a></h2>
 <p>To have your project installable from a <a class="reference internal" href="glossary.html#term-package-index"><em class="xref std std-term">Package Index</em></a> like <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a>, you&#8217;ll need to create a <a class="reference internal" href="glossary.html#term-distribution"><em class="xref std std-term">Distribution</em></a>
 (aka &#8220;<a class="reference internal" href="glossary.html#term-package-meaning-2"><em class="xref std std-term">Package</em></a>&#8221; ) for your project.</p>
 <div class="section" id="source-distributions">
-<h3><a class="toc-backref" href="#id37">Source Distributions</a><a class="headerlink" href="#source-distributions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id36">Source Distributions</a><a class="headerlink" href="#source-distributions" title="Permalink to this headline">¶</a></h3>
 <p>Minimally, you should create a <a class="reference internal" href="glossary.html#term-source-distribution-or-sdist"><em class="xref std std-term">Source Distribution</em></a>:</p>
 <div class="highlight-python"><div class="highlight"><pre>python setup.py sdist
 </pre></div>
@@ -337,7 +334,7 @@ pure python (i.e. contains no extensions), it still involves a build step to
 build out the installation metadata from &#8220;<tt class="docutils literal"><span class="pre">setup.py</span></tt>&#8221;.</p>
 </div>
 <div class="section" id="universal-wheels">
-<span id="id19"></span><h3><a class="toc-backref" href="#id38">Universal Wheels</a><a class="headerlink" href="#universal-wheels" title="Permalink to this headline">¶</a></h3>
+<span id="id19"></span><h3><a class="toc-backref" href="#id37">Universal Wheels</a><a class="headerlink" href="#universal-wheels" title="Permalink to this headline">¶</a></h3>
 <p>Additionally, if your project is pure python (i.e. contains no compiled
 extensions) and is version agnostic, then you should also create what&#8217;s called a
 &#8220;Universal Wheel&#8221;. This is a wheel that can be installed anywhere by <a class="reference internal" href="projects.html#pip"><em>pip</em></a>.</p>
@@ -364,7 +361,7 @@ universal wheel, because pip will prefer the wheel over a source installation,
 and prevent the possibility of building the extension.</p>
 </div>
 <div class="section" id="platform-wheels">
-<h3><a class="toc-backref" href="#id39">Platform Wheels</a><a class="headerlink" href="#platform-wheels" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id38">Platform Wheels</a><a class="headerlink" href="#platform-wheels" title="Permalink to this headline">¶</a></h3>
 <p>&#8220;Platform Wheels&#8221; are wheels that are specific to a certain platform like linux,
 OSX, or Windows, usually due to containing compiled extensions.</p>
 <p>&#8220;Platform Wheels&#8221; are built the same as &#8220;Universal Wheels&#8221;, but without the
@@ -382,7 +379,7 @@ exist across linux distros.</p>
 </div>
 </div>
 <div class="section" id="uploading-your-project-to-pypi">
-<h2><a class="toc-backref" href="#id40">Uploading your Project to PyPI</a><a class="headerlink" href="#uploading-your-project-to-pypi" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id39">Uploading your Project to PyPI</a><a class="headerlink" href="#uploading-your-project-to-pypi" title="Permalink to this headline">¶</a></h2>
 <p>First, you need a <a class="reference internal" href="glossary.html#term-python-package-index-pypi"><em class="xref std std-term">PyPI</em></a> user
 account. There are two options:</p>
 <ol class="arabic simple">
